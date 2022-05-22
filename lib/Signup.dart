@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:setram/Login.dart';
 import 'package:setram/MailVerificatio.dart';
+import 'package:email_validator/email_validator.dart';
 
 //import 'package:email_validator/email_validator.dart';
 
@@ -13,16 +14,38 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  String _emailID = "abc@gmail.com",
-      _password = "",
-      _email = "abc@gmail.com",
-      _pass = "Try.t.r.y@1";
+  String _firstName = "";
+  String _lastName = "";
+  String _email = "";
+  String _password = "";
+  String _pass = "";
   bool _obscureText = true;
+  int err = 0;
+
   final _formKey = GlobalKey<FormState>();
+  var _passKey = GlobalKey<FormFieldState>();
+
+  bool equalsIgnoreCase(String string1, String string2) {
+    return string1.toLowerCase() == string2.toLowerCase();
+  }
+
   void _toggle() {
     setState(() {
       _obscureText = !_obscureText;
     });
+  }
+
+  void onPressedSubmit() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+
+      print("FirstName " + _firstName);
+      print("LastName " + _lastName);
+      print("Email " + _email);
+
+      Scaffold.of(context)
+          .showSnackBar(SnackBar(content: Text('Form Submitted')));
+    }
   }
 
   @override
@@ -71,233 +94,307 @@ class _SignupState extends State<Signup> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 40.0, right: 60.0),
-                        child: Row(
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const Icon(
-                              Icons.person,
-                              color: Colors.black54,
-                              size: 25,
-                            ),
-                            const SizedBox(
-                              width: 10.0,
-                            ),
-                            Flexible(
-                              child: TextFormField(
-                                decoration: const InputDecoration(
-                                  hintText: "Firstname",
-                                ),
-                                validator: (First) {
-                                  if (First != null &&
-                                      First.isEmpty &&
-                                      RegExp(r'^[A-Z]+$').hasMatch(First)) {
-                                    return null;
-                                  } else {
-                                    return "Enter correct name";
-                                  }
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5.0,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 40.0, right: 60.0),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.person,
-                              color: Colors.black54,
-                              size: 25,
-                            ),
-                            const SizedBox(
-                              width: 10.0,
-                            ),
-                            Flexible(
-                              child: TextFormField(
-                                decoration: const InputDecoration(
-                                  hintText: "Lastname",
-                                ),
-                                validator: (Last) {
-                                  if (Last != null &&
-                                      Last.isEmpty &&
-                                      RegExp(r'^[a-z A-Z]+$').hasMatch(Last)) {
-                                    return null;
-                                  } else {
-                                    return "Enter correct Lastname";
-                                  }
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5.0,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 40.0, right: 60.0),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.alternate_email,
-                              color: Colors.black54,
-                              size: 25,
-                            ),
-                            const SizedBox(
-                              width: 10.0,
-                            ),
-                            Flexible(
-                              child: TextFormField(
-                                decoration: const InputDecoration(
-                                  hintText: "Email",
-                                ),
-                                //validator: (email) {
-                                //if (email != null && email.isEmpty && EmailValidator.validate(email))
-                                // return null;
-                                //else{
-                                //    return 'Enter valid email address';
-                                //     }
-                                //},
-                                //onSaved: (email) => _emailID = _email,
-                                //textInputAction: TextInputAction.next
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5.0,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 40.0, right: 60.0),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.password_rounded,
-                              color: Colors.black54,
-                              size: 25,
-                            ),
-                            const SizedBox(
-                              width: 10.0,
-                            ),
-                            Flexible(
-                              child: TextFormField(
-                                obscureText: _obscureText,
-                                decoration: InputDecoration(
-                                  hintText: "Password",
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      _obscureText
-                                          ? Icons.visibility_off
-                                          : Icons.visibility,
-                                    ),
-                                    onPressed: _toggle,
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 40.0, right: 60.0),
+                              child: Row(
+                                children: [
+                                  const Icon(
+                                    Icons.person_outline,
+                                    color: Colors.black54,
+                                    size: 25,
                                   ),
-                                ),
-                                validator: (password) {
-                                  if (password != null &&
-                                      password.isEmpty &&
-                                      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
-                                          .hasMatch(password)) {
-                                    return null;
-                                  } else {
-                                    return 'Enter valid password';
-                                  }
-                                },
-                                onSaved: (password) => _password = _password,
-                                textInputAction: TextInputAction.done,
+                                  const SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  Flexible(
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        hintText: "Firstname",
+                                      ),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          err++;
+                                          return 'Please enter Your Firstname';
+                                        } else if (!RegExp(
+                                                r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$")
+                                            .hasMatch(value)) {
+                                          err++;
+                                          return 'Enter a valid Firstname';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      onSaved: (value) {
+                                        setState(() {
+                                          _firstName = value!;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5.0,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 40.0, right: 60.0),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.password_rounded,
-                              color: Colors.black54,
-                              size: 25,
                             ),
                             const SizedBox(
-                              width: 10.0,
+                              height: 5.0,
                             ),
-                            Flexible(
-                              child: TextFormField(
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  hintText: "Confirm password",
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      _obscureText
-                                          ? Icons.visibility_off
-                                          : Icons.visibility,
-                                    ),
-                                    onPressed: _toggle,
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 40.0, right: 60.0),
+                              child: Row(
+                                children: [
+                                  const Icon(
+                                    Icons.person_outline,
+                                    color: Colors.black54,
+                                    size: 25,
                                   ),
-                                ),
-                                validator: (password) {
-                                  if (password != null &&
-                                      password.isEmpty &&
-                                      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
-                                          .hasMatch(password)) {
-                                    return null;
-                                  } else {
-                                    return 'Enter valid password';
-                                  }
-                                },
-                                onSaved: (password) => _password = _password,
-                                textInputAction: TextInputAction.done,
+                                  const SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  Flexible(
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        hintText: "Lastname",
+                                      ),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          err++;
+                                          return 'Please enter Your Lastname';
+                                        } else if (!RegExp(
+                                                r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$")
+                                            .hasMatch(value)) {
+                                          err++;
+                                          return 'Enter a valid Lastname';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      onSaved: (value) {
+                                        setState(() {
+                                          _lastName = value!;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
+                            ),
+                            const SizedBox(
+                              height: 5.0,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 40.0, right: 60.0),
+                              child: Row(
+                                children: [
+                                  const Icon(
+                                    Icons.alternate_email,
+                                    color: Colors.black54,
+                                    size: 25,
+                                  ),
+                                  const SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  Flexible(
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        hintText: "Email",
+                                      ),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          err++;
+                                          return 'Please enter Your Email';
+                                        } else if (!EmailValidator.validate(
+                                            value)) {
+                                          err++;
+                                          return 'Enter a valid Email';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      onSaved: (value) {
+                                        setState(() {
+                                          _email = value!;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5.0,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 40.0, right: 60.0),
+                              child: Row(
+                                children: [
+                                  const Icon(
+                                    Icons.password_rounded,
+                                    color: Colors.black54,
+                                    size: 25,
+                                  ),
+                                  const SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  Flexible(
+                                    child: TextFormField(
+                                      key: _passKey,
+                                      obscureText: _obscureText,
+                                      decoration: InputDecoration(
+                                        hintText: "Password",
+                                        suffixIcon: IconButton(
+                                          icon: Icon(
+                                            _obscureText
+                                                ? Icons.visibility_off
+                                                : Icons.visibility,
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              _obscureText = !_obscureText;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                      validator: (_password) {
+                                        if (_password == null ||
+                                            _password.isEmpty) {
+                                          err++;
+                                          return 'Enter a password';
+                                        } else if (!RegExp(
+                                                r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+                                            .hasMatch(_password)) {
+                                          err++;
+                                          //                                               r'^
+                                          //   (?=.*[A-Z])       // should contain at least one upper case
+                                          //   (?=.*[a-z])       // should contain at least one lower case
+                                          //   (?=.*?[0-9])      // should contain at least one digit
+                                          //   (?=.*?[!@#\$&*~]) // should contain at least one Special character
+                                          //   .{8,}             // Must be at least 8 characters in length
+                                          // $
+                                          return 'Your password should contain at least one uppercase, one lowercase, one digit, a special character and must be at least 8 characters in length';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      // onSaved: (value) {
+                                      //   setState(() {
+                                      //     _password = value!;
+                                      //   });
+                                      // },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5.0,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 40.0, right: 60.0),
+                              child: Row(
+                                children: [
+                                  const Icon(
+                                    Icons.password_rounded,
+                                    color: Colors.black54,
+                                    size: 25,
+                                  ),
+                                  const SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  Flexible(
+                                    child: TextFormField(
+                                        obscureText: true,
+                                        decoration: InputDecoration(
+                                          hintText: "Confirm password",
+                                          suffixIcon: IconButton(
+                                            icon: Icon(
+                                              _obscureText
+                                                  ? Icons.visibility_off
+                                                  : Icons.visibility,
+                                            ),
+                                            onPressed: () {
+                                              setState(() {
+                                                _obscureText = !_obscureText;
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                        validator: (confirmPassword) {
+                                          if (confirmPassword == null ||
+                                              confirmPassword.isEmpty) {
+                                            err++;
+                                            return 'Enter the password';
+                                          }
+                                          var password =
+                                              _passKey.currentState!.value;
+                                          if (!equalsIgnoreCase(
+                                              confirmPassword, password)) {
+                                            err++;
+                                            return 'Confirm Password invalid';
+                                          }
+                                        },
+                                        onSaved: (value) {
+                                          setState(() {
+                                            _password = value!;
+                                          });
+                                        }),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 40.0,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 15.0),
+                              child: Container(
+                                  width: 350.0,
+                                  height: 50,
+                                  child: ElevatedButton(
+                                    child: const Text(
+                                      "Register",
+                                      style: TextStyle(
+                                        fontFamily: "Poppins",
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      debugPrint("Register pressed");
+                                      debugPrint(err.toString());
+                                      onPressedSubmit();
+                                      if (err == 0) {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const MailVerif(),
+                                            ));
+                                      }
+                                    },
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              const Color(0xff341AF6)),
+                                      shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      )),
+                                    ),
+                                  )),
                             ),
                           ],
                         ),
-                      ),
-                      const SizedBox(
-                        height: 40.0,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 15.0),
-                        child: Container(
-                            width: 350.0,
-                            height: 50,
-                            child: ElevatedButton(
-                              child: const Text(
-                                "Register",
-                                style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              onPressed: () {
-                                debugPrint("Register pressed");
-
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const MailVerif(),
-                                    ));
-                              },
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    const Color(0xff341AF6)),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                )),
-                              ),
-                            )),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

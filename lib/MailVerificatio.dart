@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:setram/Signup.dart';
 import 'package:setram/Home.dart';
@@ -20,18 +19,19 @@ class _MailVerifState extends State<MailVerif> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 30.0, top: 30.0, bottom: 50.0),
+            padding: const EdgeInsets.only(left: 30.0, top: 50.0, bottom: 50.0),
             child: Row(
               children: [
                 Container(
-                  width: 25.0,
-                  height: 25.0,
+                  width: 28.0,
+                  height: 28.0,
                   child: FloatingActionButton(
+                    elevation: 0.0,
                     backgroundColor: Colors.white,
-                    child: Icon(
-                      Icons.arrow_back_ios_outlined,
-                      color: Colors.black,
-                      size: 15.0,
+                    child: const Icon(
+                      Icons.arrow_back_ios_new_outlined,
+                      color: Color(0xff302F2F),
+                      size: 13.0,
                     ),
                     onPressed: () {
                       debugPrint("go back pressed");
@@ -39,60 +39,63 @@ class _MailVerifState extends State<MailVerif> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Signup(),
+                            builder: (context) => const Signup(),
                           ));
                     },
                   ),
                 ),
-                SizedBox(
-                  width: 100.0,
+                const SizedBox(
+                  width: 90.0,
                 ),
-                Text(
+                const Text(
                   "Verification",
                   style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
+                    color: Color(0xff302F2F),
+                    fontSize: 18.0,
                     fontFamily: "Poppins",
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
             ),
           ),
-          Text(
+          const Text(
             "Code is sent to your email",
             style: TextStyle(
-              color: Colors.black,
-              fontSize: 18.0,
+              color: Color(0xff302F2F),
+              fontSize: 16.0,
               fontFamily: "Poppins",
+              fontWeight: FontWeight.w500,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 120.0, top: 40.0, bottom: 40.0),
+            padding: const EdgeInsets.only(top: 140.0, bottom: 40.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "Didin’t recieve code?",
                   style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 15.0,
+                    color: Color(0xB3302F2F),
+                    fontSize: 14.0,
                     fontFamily: "Poppins",
                   ),
                 ),
-                FlatButton(
+                TextButton(
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MailVerif(),
+                          builder: (context) => const MailVerif(),
                         ));
                   },
-                  child: Text(
+                  child: const Text(
                     "Request again",
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Color(0xff302F2F),
                       fontSize: 15.0,
                       fontFamily: "Poppins",
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 )
@@ -103,9 +106,16 @@ class _MailVerifState extends State<MailVerif> {
             padding: const EdgeInsets.only(bottom: 15.0),
             child: Container(
                 width: 350.0,
-                height: 40,
+                height: 50,
                 child: ElevatedButton(
-                  child: const Text("Verify your Account"),
+                  child: const Text(
+                    "Verify your Account",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                   onPressed: () {
                     debugPrint("Verify your Account pressed");
 
@@ -117,7 +127,7 @@ class _MailVerifState extends State<MailVerif> {
                   },
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(Colors.blue[900]),
+                        MaterialStateProperty.all(const Color(0xff341AF6)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
