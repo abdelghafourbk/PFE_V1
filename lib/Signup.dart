@@ -311,7 +311,7 @@ class _SignupState extends State<Signup> {
                                   ),
                                   Flexible(
                                     child: TextFormField(
-                                        obscureText: true,
+                                        obscureText: _obscureText,
                                         decoration: InputDecoration(
                                           hintText: "Confirm password",
                                           suffixIcon: IconButton(
