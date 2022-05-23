@@ -121,7 +121,7 @@ class _SignupState extends State<Signup> {
                                         } else if (!RegExp(
                                                 //r"^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)*$"
                                                 //r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$"
-                                                r"([A-Z]|[a-z]*)([\\s\\\'-][A-Z][a-z]*)*$")
+                                                r"^([a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)*$")
                                             .hasMatch(value)) {
                                           return 'Enter a valid Firstname';
                                         } else {
@@ -163,7 +163,7 @@ class _SignupState extends State<Signup> {
                                         if (value == null || value.isEmpty) {
                                           return 'Please enter Your Lastname';
                                         } else if (!RegExp(
-                                                r"([A-Z]|[a-z]*)([\\s\\\'-][A-Z][a-z]*)*$")
+                                                r"^([a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)*$")
                                             .hasMatch(value)) {
                                           return 'Enter a valid Lastname';
                                         } else {
