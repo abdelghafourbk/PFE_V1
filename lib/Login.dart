@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:setram/Signup.dart';
 import 'package:setram/ForgotPassword.dart';
@@ -11,10 +12,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String _emailID = "abc@gmail.com",
-      _password = "",
-      _email = "abc@gmail.com",
-      _pass = "Try.t.r.y@1";
+  String _email = "";
+  String _password = "";
   bool _obscureText = true;
 
   void _toggle() {
@@ -46,69 +45,77 @@ class _LoginState extends State<Login> {
                 Container(
                   child: Image.asset(
                     "images/Login.png",
-                    width: 300.0,
-                    height: 250.0,
+                    width: 250.0,
+                    height: 200.0,
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 40.0),
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(
                       "Login",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Color(0xff023047),
                         fontSize: 25.0,
                         fontFamily: "Poppins",
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w900,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 40.0, right: 60.0),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.alternate_email,
                         color: Colors.black54,
                         size: 25,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10.0,
                       ),
                       Flexible(
                         child: TextFormField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: "Email",
                           ),
-                          //validator: (email) {
-                          //if (email != null && email.isEmpty && EmailValidator.validate(email))
-                          // return null;
-                          //else{
-                          //    return 'Enter valid email address';
-                          //     }
-                          //},
-                          //onSaved: (email) => _emailID = _email,
-                          //textInputAction: TextInputAction.next
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter Your Email';
+                            } else if (!EmailValidator.validate(value)) {
+                              return 'Enter a valid Email';
+                            } else {
+                              return null;
+                            }
+                          },
+                          onSaved: (value) {
+                            setState(() {
+                              _email = value!;
+                            });
+                          },
                         ),
                       ),
                     ],
                   ),
                 ),
+                const SizedBox(
+                  height: 5.0,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 40.0, right: 60.0),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.password_rounded,
                         color: Colors.black54,
                         size: 25,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10.0,
                       ),
                       Flexible(
@@ -125,14 +132,23 @@ class _LoginState extends State<Login> {
                               onPressed: _toggle,
                             ),
                           ),
-                          validator: (password) {
-                            if (password != null &&
-                                password.isEmpty &&
-                                RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
-                                    .hasMatch(password)) {
+                          validator: (_password) {
+                            if (_password == null || _password.isEmpty) {
+                              return 'Enter a password';
+                            } else if (!RegExp(
+                                    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+                                .hasMatch(_password)) {
+                              //                                               r'^
+                              //   (?=.*[A-Z])       // should contain at least one upper case
+                              //   (?=.*[a-z])       // should contain at least one lower case
+                              //   (?=.*?[0-9])      // should contain at least one digit
+                              //   (?=.*?[!@#\$&*~]) // should contain at least one Special character
+                              //   .{8,}             // Must be at least 8 characters in length
+                              // $
+                              return 'Your password should contain at least one uppercase, one lowercase, one digit, a special character and must be at least 8 characters in length';
+                            } else {
                               return null;
-                            } else
-                              return 'Enter valid password';
+                            }
                           },
                           onSaved: (password) => _password = _password,
                           textInputAction: TextInputAction.done,
@@ -142,39 +158,46 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 10, right: 60),
+                  padding: const EdgeInsets.only(right: 60),
                   child: Align(
                     alignment: Alignment.topRight,
-                    child: FlatButton(
+                    child: TextButton(
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ForgotPassword(),
+                              builder: (context) => const ForgotPassword(),
                             ));
                       },
-                      child: Text(
-                        "Forgot password ?",
+                      child: const Text(
+                        "Forgot password?",
                         style: TextStyle(
-                          color: Colors.blue[300],
-                          fontSize: 15.0,
+                          color: Color(0xff6998CA),
+                          fontSize: 13.0,
                           fontFamily: "Poppins",
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 15.0),
                   child: Container(
                       width: 350.0,
-                      height: 40,
+                      height: 50,
                       child: ElevatedButton(
-                        child: const Text("Login"),
+                        child: const Text(
+                          "Login",
+                          style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                         onPressed: () {
                           debugPrint("Login pressed");
 
@@ -185,8 +208,8 @@ class _LoginState extends State<Login> {
                               ));
                         },
                         style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.blue[900]),
+                          backgroundColor: MaterialStateProperty.all(
+                              const Color(0xff341AF6)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
@@ -195,52 +218,51 @@ class _LoginState extends State<Login> {
                         ),
                       )),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 70.0),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 160.0,
-                        child: Divider(
-                          thickness: 2.0,
-                          color: Colors.grey[600],
-                        ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    SizedBox(
+                      width: 150.0,
+                      child: Divider(
+                        thickness: 1.0,
+                        color: Color(0xCC000000),
                       ),
-                      Padding(
-                          padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                          child: Text("OR")),
-                      SizedBox(
-                        width: 160.0,
-                        child: Divider(
-                          thickness: 2.0,
-                          color: Colors.grey[600],
-                        ),
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                        child: Text("OR")),
+                    SizedBox(
+                      width: 150.0,
+                      child: Divider(
+                        thickness: 1.0,
+                        color: Color(0xCC000000),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                  padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
                   child: Container(
                       width: 350.0,
-                      height: 40,
+                      height: 50,
                       child: ElevatedButton(
                         child: Row(
                           children: [
-                            Container(
-                              child: Image.asset(
-                                "images/GoogleIco.png",
-                                width: 40.0,
-                                height: 30.0,
-                              ),
+                            Image.asset(
+                              "images/GoogleIco.png",
+                              width: 40.0,
+                              height: 30.0,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 80.0,
                             ),
-                            Text(
+                            const Text(
                               "Login with Google",
                               style: TextStyle(
-                                color: Colors.blue[900],
+                                color: Color(0xff341AF6),
+                                fontFamily: "Poppins",
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ],
@@ -255,8 +277,8 @@ class _LoginState extends State<Login> {
                           // ));
                         },
                         style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.grey[300]),
+                          backgroundColor: MaterialStateProperty.all(
+                              const Color(0xffEAEBED)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
@@ -265,39 +287,37 @@ class _LoginState extends State<Login> {
                         ),
                       )),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 120.0, bottom: 20.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Don’t have an account? ",
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Don’t have an account? ",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Signup(),
+                            ));
+                      },
+                      child: const Text(
+                        "SignUp",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Color(0xffF62921),
                           fontSize: 15.0,
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Signup(),
-                              ));
-                        },
-                        child: Text(
-                          "SignUp",
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 15.0,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ],
             );
