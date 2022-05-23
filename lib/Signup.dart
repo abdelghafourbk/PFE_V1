@@ -20,7 +20,6 @@ class _SignupState extends State<Signup> {
   String _password = "";
   String _pass = "";
   bool _obscureText = true;
-  int err = 0;
 
   final _formKey = GlobalKey<FormState>();
   var _passKey = GlobalKey<FormFieldState>();
@@ -42,9 +41,8 @@ class _SignupState extends State<Signup> {
       print("FirstName " + _firstName);
       print("LastName " + _lastName);
       print("Email " + _email);
-
-      Scaffold.of(context)
-          .showSnackBar(SnackBar(content: Text('Form Submitted')));
+      // Scaffold.of(context)
+      //     .showSnackBar(SnackBar(content: Text('Form Submitted')));
     }
   }
 
@@ -119,12 +117,12 @@ class _SignupState extends State<Signup> {
                                       ),
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
-                                          err++;
                                           return 'Please enter Your Firstname';
                                         } else if (!RegExp(
-                                                r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$")
+                                                //r"^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)*$"
+                                                //r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$"
+                                                r"([A-Z]|[a-z]*)([\\s\\\'-][A-Z][a-z]*)*$")
                                             .hasMatch(value)) {
-                                          err++;
                                           return 'Enter a valid Firstname';
                                         } else {
                                           return null;
@@ -163,12 +161,10 @@ class _SignupState extends State<Signup> {
                                       ),
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
-                                          err++;
                                           return 'Please enter Your Lastname';
                                         } else if (!RegExp(
-                                                r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$")
+                                                r"([A-Z]|[a-z]*)([\\s\\\'-][A-Z][a-z]*)*$")
                                             .hasMatch(value)) {
-                                          err++;
                                           return 'Enter a valid Lastname';
                                         } else {
                                           return null;
@@ -207,11 +203,9 @@ class _SignupState extends State<Signup> {
                                       ),
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
-                                          err++;
                                           return 'Please enter Your Email';
                                         } else if (!EmailValidator.validate(
                                             value)) {
-                                          err++;
                                           return 'Enter a valid Email';
                                         } else {
                                           return null;
@@ -265,12 +259,10 @@ class _SignupState extends State<Signup> {
                                       validator: (_password) {
                                         if (_password == null ||
                                             _password.isEmpty) {
-                                          err++;
                                           return 'Enter a password';
                                         } else if (!RegExp(
                                                 r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
                                             .hasMatch(_password)) {
-                                          err++;
                                           //                                               r'^
                                           //   (?=.*[A-Z])       // should contain at least one upper case
                                           //   (?=.*[a-z])       // should contain at least one lower case
@@ -330,15 +322,18 @@ class _SignupState extends State<Signup> {
                                         validator: (confirmPassword) {
                                           if (confirmPassword == null ||
                                               confirmPassword.isEmpty) {
-                                            err++;
+                                            setState(() {});
                                             return 'Enter the password';
-                                          }
-                                          var password =
-                                              _passKey.currentState!.value;
-                                          if (!equalsIgnoreCase(
-                                              confirmPassword, password)) {
-                                            err++;
-                                            return 'Confirm Password invalid';
+                                          } else {
+                                            var password =
+                                                _passKey.currentState!.value;
+                                            if (!equalsIgnoreCase(
+                                                confirmPassword, password)) {
+                                              setState(() {});
+                                              return 'Confirm Password invalid';
+                                            } else {
+                                              return null;
+                                            }
                                           }
                                         },
                                         onSaved: (value) {
@@ -369,9 +364,8 @@ class _SignupState extends State<Signup> {
                                     ),
                                     onPressed: () {
                                       debugPrint("Register pressed");
-                                      debugPrint(err.toString());
                                       onPressedSubmit();
-                                      if (err == 0) {
+                                      if (_formKey.currentState!.validate()) {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
