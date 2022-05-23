@@ -51,9 +51,9 @@ class _MailVerifState extends State<MailVerif> {
                   "Verification",
                   style: TextStyle(
                     color: Color(0xff302F2F),
-                    fontSize: 18.0,
+                    fontSize: 15.0,
                     fontFamily: "Poppins",
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],
@@ -68,8 +68,188 @@ class _MailVerifState extends State<MailVerif> {
               fontWeight: FontWeight.w500,
             ),
           ),
+          const SizedBox(
+            height: 30.0,
+          ),
+          Container(
+            width: 234,
+            height: 55,
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                    top: 0,
+                    left: 183,
+                    child: Container(
+                        width: 51,
+                        height: 55,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(6),
+                            topRight: Radius.circular(6),
+                            bottomLeft: Radius.circular(6),
+                            bottomRight: Radius.circular(6),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color.fromRGBO(
+                                    105, 152, 202, 0.07000000029802322),
+                                offset: Offset(2, 4),
+                                blurRadius: 5)
+                          ],
+                          color: Color.fromRGBO(
+                              105, 152, 202, 0.07000000029802322),
+                        ))),
+                Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Container(
+                        width: 51,
+                        height: 55,
+                        child: Stack(children: <Widget>[
+                          Positioned(
+                              top: 0,
+                              left: 0,
+                              child: Container(
+                                  width: 51,
+                                  height: 55,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(6),
+                                      topRight: Radius.circular(6),
+                                      bottomLeft: Radius.circular(6),
+                                      bottomRight: Radius.circular(6),
+                                    ),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Color.fromRGBO(105, 152, 202,
+                                              0.07000000029802322),
+                                          offset: Offset(2, 2),
+                                          blurRadius: 5)
+                                    ],
+                                    color: const Color.fromRGBO(
+                                        105, 152, 202, 0.05000000074505806),
+                                    border: Border.all(
+                                      color: const Color.fromRGBO(
+                                          105, 152, 202, 1),
+                                      width: 1.5,
+                                    ),
+                                  ))),
+                          const Positioned(
+                              top: 13,
+                              left: 19,
+                              child: Text(
+                                // here we add input fields
+                                '5',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color.fromRGBO(52, 26, 246, 1),
+                                  fontFamily: 'Poppins',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              )),
+                        ]))),
+                Positioned(
+                    top: 0,
+                    left: 61,
+                    child: Container(
+                        width: 51,
+                        height: 55,
+                        child: Stack(children: <Widget>[
+                          Positioned(
+                              top: 0,
+                              left: 0,
+                              child: Container(
+                                  width: 51,
+                                  height: 55,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(6),
+                                      topRight: Radius.circular(6),
+                                      bottomLeft: Radius.circular(6),
+                                      bottomRight: Radius.circular(6),
+                                    ),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Color.fromRGBO(105, 152, 202,
+                                              0.07000000029802322),
+                                          offset: Offset(2, 2),
+                                          blurRadius: 5)
+                                    ],
+                                    color: const Color.fromRGBO(
+                                        105, 152, 202, 0.05000000074505806),
+                                    border: Border.all(
+                                      color: const Color.fromRGBO(
+                                          105, 152, 202, 1),
+                                      width: 1.5,
+                                    ),
+                                  ))),
+                          const Positioned(
+                              top: 13,
+                              left: 19,
+                              child: Text(
+                                '2',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Color.fromRGBO(52, 26, 246, 1),
+                                    fontFamily: 'Poppins',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600),
+                              )),
+                        ]))),
+                Positioned(
+                    top: 0,
+                    left: 122,
+                    child: Container(
+                        width: 51,
+                        height: 55,
+                        child: Stack(children: <Widget>[
+                          Positioned(
+                              top: 0,
+                              left: 0,
+                              child: Container(
+                                  width: 51,
+                                  height: 55,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(6),
+                                      topRight: Radius.circular(6),
+                                      bottomLeft: Radius.circular(6),
+                                      bottomRight: Radius.circular(6),
+                                    ),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Color.fromRGBO(105, 152, 202,
+                                              0.07000000029802322),
+                                          offset: Offset(2, 2),
+                                          blurRadius: 5)
+                                    ],
+                                    color: const Color.fromRGBO(
+                                        105, 152, 202, 0.05000000074505806),
+                                    border: Border.all(
+                                      color: const Color.fromRGBO(
+                                          105, 152, 202, 1),
+                                      width: 1.5,
+                                    ),
+                                  ))),
+                          const Positioned(
+                              top: 13,
+                              left: 19,
+                              child: Text(
+                                '8',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Color.fromRGBO(52, 26, 246, 1),
+                                    fontFamily: 'Poppins',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600),
+                              )),
+                        ]))),
+              ],
+            ),
+          ),
           Padding(
-            padding: const EdgeInsets.only(top: 140.0, bottom: 40.0),
+            padding: const EdgeInsets.only(top: 40.0, bottom: 40.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -122,7 +302,7 @@ class _MailVerifState extends State<MailVerif> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Home(),
+                          builder: (context) => const Home(),
                         ));
                   },
                   style: ButtonStyle(
