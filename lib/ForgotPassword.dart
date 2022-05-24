@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:setram/ResetPassword.dart';
 
@@ -9,7 +10,7 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
-  String _emailID = "abc@gmail.com", _email = "abc@gmail.com";
+  String _email = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,28 +18,24 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            child: Image.asset(
-              "images/Logo_SETRAM_Algérie1.png",
-              width: 130.0,
-              height: 50.0,
-            ),
+          Image.asset(
+            "images/Logo_SETRAM_Algérie1.png",
+            width: 130.0,
+            height: 50.0,
           ),
-          Container(
-            child: Image.asset(
-              "images/Forgotpassword.png",
-              width: 300.0,
-              height: 250.0,
-            ),
+          Image.asset(
+            "images/Forgotpassword.png",
+            width: 250.0,
+            height: 200.0,
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(left: 40.0),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
-                "Forgot ",
+                "Forgot\nPassword?",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Color(0xff023047),
                   fontSize: 25.0,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.bold,
@@ -46,22 +43,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 40.0, bottom: 10.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                "Password?",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 25.0,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Padding(
+          const SizedBox(height: 10.0),
+          const Padding(
             padding: EdgeInsets.only(left: 40.0),
             child: Align(
               alignment: Alignment.topLeft,
@@ -76,50 +59,62 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 40.0, right: 60.0),
             child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.alternate_email,
                   color: Colors.black54,
                   size: 25,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10.0,
                 ),
                 Flexible(
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: "Email",
                     ),
-                    //validator: (email) {
-                    //if (email != null && email.isEmpty && EmailValidator.validate(email))
-                    // return null;
-                    //else{
-                    //    return 'Enter valid email address';
-                    //     }
-                    //},
-                    //onSaved: (email) => _emailID = _email,
-                    //textInputAction: TextInputAction.next
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter Your Email';
+                      } else if (!EmailValidator.validate(value)) {
+                        return 'Enter a valid Email';
+                      } else {
+                        return null;
+                      }
+                    },
+                    onSaved: (value) {
+                      setState(() {
+                        _email = value!;
+                      });
+                    },
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40.0,
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 15.0),
             child: Container(
-                width: 350.0,
-                height: 40,
-                child: ElevatedButton(
-                  child: const Text("Submit"),
+              width: 350.0,
+              height: 50,
+              child: ElevatedButton(
+                  child: const Text(
+                    "Submit",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                   onPressed: () {
                     debugPrint("Submit pressed");
 
@@ -131,13 +126,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   },
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(Colors.blue[900]),
+                        MaterialStateProperty.all(const Color(0xff341AF6)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     )),
-                  ),
-                )),
+                  )),
+            ),
           ),
         ],
       ),

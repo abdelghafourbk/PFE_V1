@@ -4,8 +4,6 @@ import 'package:setram/Login.dart';
 import 'package:setram/MailVerificatio.dart';
 import 'package:email_validator/email_validator.dart';
 
-//import 'package:email_validator/email_validator.dart';
-
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
 
