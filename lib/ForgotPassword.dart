@@ -121,7 +121,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ResetPassword(),
+                          builder: (context) => const ResetPassword(),
                         ));
                   },
                   style: ButtonStyle(
