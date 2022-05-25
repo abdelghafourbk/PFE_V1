@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,13 +15,13 @@ class _HomeState extends State<Home> {
     var Destination1 = {
       'image': 'images/Dest1.png',
       'name': 'National Library',
-      'desc': 'Description of the place should be writter here ...',
+      'desc': 'Description of the place should be written here ...',
       'tag': 'Destination1'
     };
     var Destination2 = {
       'image': 'images/Dest2.png',
       'name': 'USTHB',
-      'desc': 'Description of the place should be writter here ...',
+      'desc': 'Description of the place should be written here ...',
       'tag': 'Destination2'
     };
     List Dest = [Destination1, Destination2];
@@ -45,11 +45,13 @@ class _HomeState extends State<Home> {
     List Subsc = [Subs1, Subs2];
 
     var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: const Color(0xffF7F7F7),
       body: ListView.builder(
           scrollDirection: Axis.vertical,
-          physics: const NeverScrollableScrollPhysics(),
+          // physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: 1,
           itemBuilder: (BuildContext context, int index) {
@@ -57,23 +59,25 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 20.0, top: 20.0, bottom: 30.0),
+                  padding: const EdgeInsets.only(
+                      left: 20.0, top: 20.0, bottom: 30.0, right: 20.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.notifications),
+                        icon: const Icon(Icons.notifications_none_outlined),
                       ),
-                      SizedBox(
-                        width: 90.0,
+                      const SizedBox(
+                        width: 55.0,
                       ),
                       Column(
-                        children: [
+                        children: const [
                           Text(
                             "Welcome back,",
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 20.0,
+                              fontSize: 18.0,
                               fontFamily: "Poppins",
                             ),
                           ),
@@ -81,24 +85,25 @@ class _HomeState extends State<Home> {
                             "FirstName",
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 20.0,
+                              fontSize: 18.0,
                               fontFamily: "Poppins",
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(
-                        width: 90.0,
+                      const SizedBox(
+                        width: 55.0,
                       ),
-                      CircleAvatar(
+                      const CircleAvatar(
                         backgroundImage: AssetImage("images/circleavatar.png"),
                       ),
                     ],
                   ),
                 ),
-                Text(
-                  "Choose a destination,",
+                const Text(
+                  "Choose a destination\nenjoy your trip.",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 23.0,
@@ -106,40 +111,39 @@ class _HomeState extends State<Home> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  "enjoy your trip.",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 23.0,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                Container(
+                  padding: const EdgeInsets.only(top: 25.0, bottom: 30.0),
                   child: Container(
-                    width: 450.0,
-                    height: 60.0,
+                    height: 50,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(8.0),
                       color: Colors.white,
                     ),
-                    padding: EdgeInsets.all(20.0),
-                    margin: EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: const EdgeInsets.only(left: 10.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.search,
-                          color: Colors.grey[500],
-                          size: 25,
+                          color: Color(0x80000000),
+                          size: 24,
                         ),
-                        SizedBox(
-                          width: 10.0,
+                        const SizedBox(
+                          width: 15.0,
                         ),
                         Flexible(
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
                               hintText: "Search for destination",
+                              // contentPadding: EdgeInsets.only(bottom: 10.0),
+                              hintStyle: TextStyle(
+                                color: Color(0x80000000),
+                                fontFamily: 'Poppins',
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                              ),
+                              fillColor: Color(0xffffffff),
                             ),
                           ),
                         ),
@@ -148,42 +152,43 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 20.0),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 24.0),
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(
                           "Popular Destinations",
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Color(0xff000000),
                             fontSize: 18.0,
                             fontFamily: "Poppins",
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 210.0),
-                      child: FlatButton(
+                    Container(
+                      padding: const EdgeInsets.only(right: 24.0),
+                      child: TextButton(
                         onPressed: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Home(),
+                                builder: (context) => const Home(),
                               ));
                         },
-                        child: Text(
+                        child: const Text(
                           "See All",
                           style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: 15.0,
+                            color: Color(0xff6998CA),
+                            fontSize: 14.0,
                             fontFamily: "Poppins",
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -254,47 +259,45 @@ class _HomeState extends State<Home> {
                         );
                       }),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 20.0),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "Subscriptions",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18.0,
-                              fontFamily: "Poppins",
-                              fontWeight: FontWeight.bold,
-                            ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(left: 24.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Subscriptions",
+                          style: TextStyle(
+                            color: Color(0xff000000),
+                            fontSize: 18.0,
+                            fontFamily: "Poppins",
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 275.0),
-                        child: FlatButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Home(),
-                                ));
-                          },
-                          child: Text(
-                            "See All",
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontSize: 15.0,
-                              fontFamily: "Poppins",
-                            ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(right: 24.0),
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Home(),
+                              ));
+                        },
+                        child: const Text(
+                          "See All",
+                          style: TextStyle(
+                            color: Color(0xff6998CA),
+                            fontSize: 14.0,
+                            fontFamily: "Poppins",
                           ),
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 200.0,
