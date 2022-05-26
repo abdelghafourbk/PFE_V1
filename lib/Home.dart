@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:setram/Login.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.8);
+    _pageController = PageController(viewportFraction: 0.7);
   }
 
   Widget build(BuildContext context) {
@@ -78,10 +79,17 @@ class _HomeState extends State<Home> {
                     children: [
                       IconButton(
                         onPressed: () {},
+                        // onPressed: () {
+                        //   Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //         builder: (context) => const Notificatio(),
+                        //       ));
+                        // },
                         icon: const Icon(Icons.notifications_none_outlined),
                       ),
                       const SizedBox(
-                        width: 55.0,
+                        width: 35.0,
                       ),
                       Column(
                         children: const [
@@ -105,10 +113,28 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                       const SizedBox(
-                        width: 55.0,
+                        width: 35.0,
                       ),
-                      const CircleAvatar(
-                        backgroundImage: AssetImage("images/circleavatar.png"),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Login(),
+                              ));
+                        },
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder()),
+                        ),
+                        child: ClipOval(
+                          child: Image.asset(
+                            'images/userPic.png',
+                            width: 40,
+                            height: 40,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -205,6 +231,7 @@ class _HomeState extends State<Home> {
                 ),
                 SizedBox(
                   height: 215.0,
+                  width: MediaQuery.of(context).size.width,
                   child: PageView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: Dest.length,
@@ -327,7 +354,7 @@ class _HomeState extends State<Home> {
                           child: Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(15.0),
                               boxShadow: const [
                                 BoxShadow(
                                   color: Colors.grey,

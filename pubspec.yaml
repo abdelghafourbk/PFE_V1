@@ -36,6 +36,7 @@ dependencies:
   flutter_neumorphic: ^3.2.0
   email_validator: ^2.0.1
   introduction_screen: ^3.0.2
+  carousel_slider: ^4.1.1
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,7 @@ flutter:
     - images/circleavatar.png
     - images/Dest1.png
     - images/Dest2.png
+    - images/userPic.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
