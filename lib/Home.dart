@@ -9,8 +9,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late PageController _pageController;
   @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(viewportFraction: 0.8);
+  }
+
   Widget build(BuildContext context) {
+    var activePage;
     //Popular Destinations
     var Destination1 = {
       'image': 'images/Dest1.png',
@@ -24,7 +31,13 @@ class _HomeState extends State<Home> {
       'desc': 'Description of the place should be written here ...',
       'tag': 'Destination2'
     };
-    List Dest = [Destination1, Destination2];
+    var Destination3 = {
+      'image': 'images/Dest2.png',
+      'name': 'USTHB',
+      'desc': 'Description of the place should be written here ...',
+      'tag': 'Destination3'
+    };
+    List Dest = [Destination1, Destination2, Destination3];
 
     var Subs1 = {
       'name': 'Tawasol University',
@@ -51,7 +64,6 @@ class _HomeState extends State<Home> {
       backgroundColor: const Color(0xffF7F7F7),
       body: ListView.builder(
           scrollDirection: Axis.vertical,
-          // physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: 1,
           itemBuilder: (BuildContext context, int index) {
@@ -87,7 +99,7 @@ class _HomeState extends State<Home> {
                               color: Colors.black,
                               fontSize: 18.0,
                               fontFamily: "Poppins",
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],
@@ -108,7 +120,7 @@ class _HomeState extends State<Home> {
                     color: Colors.black,
                     fontSize: 23.0,
                     fontFamily: "Poppins",
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 Container(
@@ -164,7 +176,7 @@ class _HomeState extends State<Home> {
                             color: Color(0xff000000),
                             fontSize: 18.0,
                             fontFamily: "Poppins",
-                            fontWeight: FontWeight.w900,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
@@ -192,64 +204,68 @@ class _HomeState extends State<Home> {
                   ],
                 ),
                 SizedBox(
-                  height: 180.0,
-                  child: ListView.builder(
+                  height: 215.0,
+                  child: PageView.builder(
                       scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
                       itemCount: Dest.length,
-                      itemBuilder: (BuildContext context, int index) {
+                      pageSnapping: true,
+                      controller: _pageController,
+                      onPageChanged: (page) {
+                        setState(() {
+                          activePage = page;
+                        });
+                      },
+                      itemBuilder: (context, pagePosition) {
                         return Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          //fix cards padding later
+                          padding: const EdgeInsets.only(right: 20.0),
                           child: Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(15.0),
                               boxShadow: const [
                                 BoxShadow(
-                                  color: Colors.grey,
-                                  blurRadius: 10,
-                                  offset: Offset(2, 5),
+                                  color: Color(0x1a6998CA),
+                                  blurRadius: 7,
+                                  offset: Offset(2.0, 2.0),
                                 ),
                               ],
                             ),
-                            width: 270,
                             child: Padding(
-                              padding: EdgeInsets.all(10.0),
+                              padding: const EdgeInsets.all(10.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Expanded(
-                                    flex: 3,
-                                    child: Container(
-                                      child: Image.asset(
-                                        Dest[index]['image'],
-                                        width: 250.0,
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    child: Image.asset(
+                                      Dest[pagePosition]['image'],
+                                      width: double.infinity,
+                                      height: 95.0,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5.0),
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      Dest[pagePosition]['name'],
+                                      style: const TextStyle(
+                                        color: Color(0xff302F2F),
+                                        fontSize: 16.0,
+                                        fontFamily: "Poppins",
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Container(
-                                      child: Text(
-                                        Dest[index]['name'],
-                                        style: const TextStyle(
-                                          fontSize: 15,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Container(
-                                      child: Text(
-                                        Dest[index]['desc'],
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 12,
-                                          fontFamily: "Poppins",
-                                        ),
-                                      ),
+                                  const SizedBox(height: 5.0),
+                                  Text(
+                                    Dest[pagePosition]['desc'],
+                                    style: const TextStyle(
+                                      color: Color(0xff88879C),
+                                      fontSize: 12.0,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w200,
                                     ),
                                   ),
                                 ],
@@ -272,7 +288,7 @@ class _HomeState extends State<Home> {
                             color: Color(0xff000000),
                             fontSize: 18.0,
                             fontFamily: "Poppins",
-                            fontWeight: FontWeight.w900,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
@@ -423,7 +439,7 @@ class _HomeState extends State<Home> {
                                           child: Container(
                                               child: ElevatedButton(
                                             child: Row(
-                                              children: [
+                                              children: const [
                                                 Text(
                                                   "Purchase",
                                                   style: TextStyle(
@@ -471,49 +487,49 @@ class _HomeState extends State<Home> {
                         );
                       }),
                 ),
-                Stack(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(30.0),
-                      child: Align(
-                        alignment: Alignment(0.0, 1.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                          child: BottomNavigationBar(
-                              selectedItemColor: Colors.white,
-                              backgroundColor: Colors.blue[900],
-                              items: const [
-                                BottomNavigationBarItem(
-                                  icon: Icon(
-                                    Icons.home,
-                                    color: Colors.white,
-                                  ),
-                                  label: "Home",
-                                ),
-                                BottomNavigationBarItem(
-                                    icon: Icon(
-                                      Icons.speaker_notes,
-                                      color: Colors.white,
-                                    ),
-                                    label: "notes"),
-                                BottomNavigationBarItem(
-                                    icon: Icon(
-                                      Icons.history,
-                                      color: Colors.white,
-                                    ),
-                                    label: "history"),
-                                BottomNavigationBarItem(
-                                    icon: Icon(
-                                      Icons.person_outline,
-                                      color: Colors.white,
-                                    ),
-                                    label: "Profile"),
-                              ]),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                // Stack(
+                //   children: [
+                //     Padding(
+                //       padding: EdgeInsets.all(30.0),
+                //       child: Align(
+                //         alignment: Alignment(0.0, 1.0),
+                //         child: ClipRRect(
+                //           borderRadius: BorderRadius.all(Radius.circular(30)),
+                //           child: BottomNavigationBar(
+                //               selectedItemColor: Colors.white,
+                //               backgroundColor: Colors.blue[900],
+                //               items: const [
+                //                 BottomNavigationBarItem(
+                //                   icon: Icon(
+                //                     Icons.home,
+                //                     color: Colors.white,
+                //                   ),
+                //                   label: "Home",
+                //                 ),
+                //                 BottomNavigationBarItem(
+                //                     icon: Icon(
+                //                       Icons.speaker_notes,
+                //                       color: Colors.white,
+                //                     ),
+                //                     label: "notes"),
+                //                 BottomNavigationBarItem(
+                //                     icon: Icon(
+                //                       Icons.history,
+                //                       color: Colors.white,
+                //                     ),
+                //                     label: "history"),
+                //                 BottomNavigationBarItem(
+                //                     icon: Icon(
+                //                       Icons.person_outline,
+                //                       color: Colors.white,
+                //                     ),
+                //                     label: "Profile"),
+                //               ]),
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ],
             );
           }),

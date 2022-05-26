@@ -69,7 +69,7 @@ class _LoginState extends State<Login> {
                             color: Color(0xff023047),
                             fontSize: 25.0,
                             fontFamily: "Poppins",
-                            fontWeight: FontWeight.w900,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
@@ -335,7 +335,7 @@ class _LoginState extends State<Login> {
                               color: Color(0xffF62921),
                               fontSize: 15.0,
                               fontFamily: "Poppins",
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         )

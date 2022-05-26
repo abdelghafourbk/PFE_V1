@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Colors.black,
                           fontSize: 20.0,
                           fontFamily: "Poppins",
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       SizedBox(
@@ -150,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Colors.black,
                           fontSize: 20.0,
                           fontFamily: "Poppins",
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       SizedBox(
@@ -192,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Colors.black,
                           fontSize: 20.0,
                           fontFamily: "Poppins",
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       SizedBox(
