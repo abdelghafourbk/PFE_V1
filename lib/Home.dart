@@ -66,7 +66,7 @@ class _HomeState extends State<Home> {
       backgroundColor: const Color(0xffF7F7F7),
       body: SizedBox(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.only(
@@ -225,23 +225,17 @@ class _HomeState extends State<Home> {
               ],
             ),
             SizedBox(
-              height: 200.0,
+              height: height * 0.26,
               width: MediaQuery.of(context).size.width,
-              child: PageView.builder(
+              child: ListView.builder(
                   scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
                   itemCount: Dest.length,
-                  pageSnapping: true,
-                  controller: _pageController,
-                  onPageChanged: (page) {
-                    setState(() {
-                      activePage = page;
-                    });
-                  },
-                  itemBuilder: (context, pagePosition) {
+                  itemBuilder: (BuildContext context, int pagePosition) {
                     return Padding(
-                      //fix cards margin left later
-                      padding: const EdgeInsets.only(right: 20.0),
+                      padding: const EdgeInsets.only(left: 24.0, bottom: 10.0),
                       child: Container(
+                        width: width * 0.7,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(15.0),
@@ -263,7 +257,7 @@ class _HomeState extends State<Home> {
                                 child: Image.asset(
                                   Dest[pagePosition]['image'],
                                   width: double.infinity,
-                                  height: 95.0,
+                                  height: height * 0.12,
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -297,6 +291,7 @@ class _HomeState extends State<Home> {
                     );
                   }),
             ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
