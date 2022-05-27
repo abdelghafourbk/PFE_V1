@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:setram/Login.dart';
+import 'package:setram/Notifications.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -63,503 +64,502 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       backgroundColor: const Color(0xffF7F7F7),
-      body: ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: 1,
-          itemBuilder: (BuildContext context, int index) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20.0, top: 20.0, bottom: 30.0, right: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        // onPressed: () {
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //         builder: (context) => const Notificatio(),
-                        //       ));
-                        // },
-                        icon: const Icon(Icons.notifications_none_outlined),
-                      ),
-                      const SizedBox(
-                        width: 35.0,
-                      ),
-                      Column(
-                        children: const [
-                          Text(
-                            "Welcome back,",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18.0,
-                              fontFamily: "Poppins",
-                            ),
-                          ),
-                          Text(
-                            "FirstName",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18.0,
-                              fontFamily: "Poppins",
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 35.0,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Login(),
-                              ));
-                        },
-                        style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all(const CircleBorder()),
+      body: SizedBox(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 20.0, top: 20.0, bottom: 30.0, right: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Notifs(),
+                          ));
+                    },
+                    icon: const Icon(Icons.notifications_none_outlined),
+                  ),
+                  const SizedBox(
+                    width: 35.0,
+                  ),
+                  Column(
+                    children: const [
+                      Text(
+                        "Welcome back,",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18.0,
+                          fontFamily: "Poppins",
                         ),
-                        child: ClipOval(
-                          child: Image.asset(
-                            'images/userPic.png',
-                            width: 40,
-                            height: 40,
-                            fit: BoxFit.cover,
-                          ),
+                      ),
+                      Text(
+                        "FirstName",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18.0,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],
                   ),
-                ),
-                const Text(
-                  "Choose a destination\nenjoy your trip.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 23.0,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.w600,
+                  const SizedBox(
+                    width: 35.0,
                   ),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(top: 25.0, bottom: 30.0),
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.white,
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Login(),
+                          ));
+                    },
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(const CircleBorder()),
                     ),
-                    padding: const EdgeInsets.only(left: 10.0),
-                    margin: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.search,
-                          color: Color(0x80000000),
-                          size: 24,
-                        ),
-                        const SizedBox(
-                          width: 15.0,
-                        ),
-                        Flexible(
-                          child: TextFormField(
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Search for destination",
-                              // contentPadding: EdgeInsets.only(bottom: 10.0),
-                              hintStyle: TextStyle(
-                                color: Color(0x80000000),
-                                fontFamily: 'Poppins',
-                                fontSize: 16,
-                                fontWeight: FontWeight.normal,
-                              ),
-                              fillColor: Color(0xffffffff),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 24.0),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Popular Destinations",
-                          style: TextStyle(
-                            color: Color(0xff000000),
-                            fontSize: 18.0,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+                    child: ClipOval(
+                      child: Image.asset(
+                        'images/userPic.png',
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.only(right: 24.0),
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Home(),
-                              ));
-                        },
-                        child: const Text(
-                          "See All",
-                          style: TextStyle(
-                            color: Color(0xff6998CA),
-                            fontSize: 14.0,
-                            fontFamily: "Poppins",
+                  ),
+                ],
+              ),
+            ),
+            const Text(
+              "Choose a destination\nenjoy your trip.",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 23.0,
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(top: 25.0, bottom: 30.0),
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  color: Colors.white,
+                ),
+                padding: const EdgeInsets.only(left: 10.0),
+                margin: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.search,
+                      color: Color(0x80000000),
+                      size: 24,
+                    ),
+                    const SizedBox(
+                      width: 15.0,
+                    ),
+                    Flexible(
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Search for destination",
+                          // contentPadding: EdgeInsets.only(bottom: 10.0),
+                          hintStyle: TextStyle(
+                            color: Color(0x80000000),
+                            fontFamily: 'Poppins',
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
                           ),
+                          fillColor: Color(0xffffffff),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 215.0,
-                  width: MediaQuery.of(context).size.width,
-                  child: PageView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: Dest.length,
-                      pageSnapping: true,
-                      controller: _pageController,
-                      onPageChanged: (page) {
-                        setState(() {
-                          activePage = page;
-                        });
-                      },
-                      itemBuilder: (context, pagePosition) {
-                        return Padding(
-                          //fix cards padding later
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15.0),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color(0x1a6998CA),
-                                  blurRadius: 7,
-                                  offset: Offset(2.0, 2.0),
-                                ),
-                              ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 24.0),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Popular Destinations",
+                      style: TextStyle(
+                        color: Color(0xff000000),
+                        fontSize: 18.0,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(right: 24.0),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Home(),
+                          ));
+                    },
+                    child: const Text(
+                      "See All",
+                      style: TextStyle(
+                        color: Color(0xff6998CA),
+                        fontSize: 14.0,
+                        fontFamily: "Poppins",
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 200.0,
+              width: MediaQuery.of(context).size.width,
+              child: PageView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: Dest.length,
+                  pageSnapping: true,
+                  controller: _pageController,
+                  onPageChanged: (page) {
+                    setState(() {
+                      activePage = page;
+                    });
+                  },
+                  itemBuilder: (context, pagePosition) {
+                    return Padding(
+                      //fix cards margin left later
+                      padding: const EdgeInsets.only(right: 20.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15.0),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0x1a6998CA),
+                              blurRadius: 7,
+                              offset: Offset(2.0, 2.0),
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    child: Image.asset(
-                                      Dest[pagePosition]['image'],
-                                      width: double.infinity,
-                                      height: 95.0,
-                                      fit: BoxFit.fill,
-                                    ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(15.0),
+                                child: Image.asset(
+                                  Dest[pagePosition]['image'],
+                                  width: double.infinity,
+                                  height: 95.0,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              const SizedBox(height: 5.0),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  Dest[pagePosition]['name'],
+                                  style: const TextStyle(
+                                    color: Color(0xff302F2F),
+                                    fontSize: 16.0,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                  const SizedBox(height: 5.0),
-                                  Align(
-                                    alignment: Alignment.topLeft,
+                                ),
+                              ),
+                              const SizedBox(height: 5.0),
+                              Text(
+                                Dest[pagePosition]['desc'],
+                                style: const TextStyle(
+                                  color: Color(0xff88879C),
+                                  fontSize: 12.0,
+                                  fontFamily: "Poppins",
+                                  fontWeight: FontWeight.w200,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 24.0),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Subscriptions",
+                      style: TextStyle(
+                        color: Color(0xff000000),
+                        fontSize: 18.0,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(right: 24.0),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Home(),
+                          ));
+                    },
+                    child: const Text(
+                      "See All",
+                      style: TextStyle(
+                        color: Color(0xff6998CA),
+                        fontSize: 14.0,
+                        fontFamily: "Poppins",
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 160.0,
+              width: width,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: Subsc.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          right: 24.0, left: 24.0, bottom: 10.0),
+                      child: Container(
+                        width: 350,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: const Color(0x80341AF6)),
+                          borderRadius: BorderRadius.circular(15.0),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0x1a2D9CDB),
+                              blurRadius: 7,
+                              offset: Offset(2.0, 2.0),
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Row(children: [
+                            Expanded(
+                              flex: 3,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  //name
+                                  Expanded(
+                                    flex: 1,
                                     child: Text(
-                                      Dest[pagePosition]['name'],
+                                      Subsc[index]['name'],
                                       style: const TextStyle(
-                                        color: Color(0xff302F2F),
-                                        fontSize: 16.0,
+                                        fontSize: 14,
                                         fontFamily: "Poppins",
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(height: 5.0),
-                                  Text(
-                                    Dest[pagePosition]['desc'],
-                                    style: const TextStyle(
-                                      color: Color(0xff88879C),
-                                      fontSize: 12.0,
-                                      fontFamily: "Poppins",
-                                      fontWeight: FontWeight.w200,
+                                  //desc
+                                  Expanded(
+                                    flex: 2,
+                                    child: Text(
+                                      Subsc[index]['desc'],
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 11,
+                                        fontFamily: "Poppins",
+                                      ),
                                     ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 80,
+                                        height: 32,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xffFCE6E6),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: TextButton(
+                                            child: const Text(
+                                              "Tramway",
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w500,
+                                                color: Color(0xffEB5757),
+                                              ),
+                                            ),
+                                            onPressed: () {},
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 80,
+                                      ),
+                                      Container(
+                                        width: 95,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xff341AF6),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Row(
+                                            children: [
+                                              TextButton(
+                                                child: const Text(
+                                                  "Purchase",
+                                                  style: TextStyle(
+                                                    fontFamily: 'Poppins',
+                                                    fontSize: 12.0,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  debugPrint(
+                                                      "Purchase pressed");
+                                                  //Navigator.push(
+                                                  // context,
+                                                  //MaterialPageRoute(
+                                                  // builder: (context) => Page3(),
+                                                  // ));
+                                                },
+                                              ),
+                                              const Icon(
+                                                Icons.arrow_forward_outlined,
+                                                color: Colors.white,
+                                                size: 15.0,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
                             ),
-                          ),
-                        );
-                      }),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 24.0),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Subscriptions",
-                          style: TextStyle(
-                            color: Color(0xff000000),
-                            fontSize: 18.0,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w600,
-                          ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                child: Column(
+                                  children: [
+                                    //price
+                                    Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        child: Text(
+                                          Subsc[index]['price'],
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontFamily: "Poppins",
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    //Day
+                                    Expanded(
+                                      flex: 2,
+                                      child: Container(
+                                        child: Text(
+                                          Subsc[index]['Day'],
+                                          style: const TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.red,
+                                            fontFamily: "Poppins",
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ]),
                         ),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(right: 24.0),
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Home(),
-                              ));
-                        },
-                        child: const Text(
-                          "See All",
-                          style: TextStyle(
-                            color: Color(0xff6998CA),
-                            fontSize: 14.0,
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 200.0,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemCount: Subsc.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15.0),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  blurRadius: 10,
-                                  offset: Offset(2, 5),
-                                ),
-                              ],
-                            ),
-                            width: 400,
-                            child: Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Row(children: [
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        //name
-                                        Expanded(
-                                          flex: 1,
-                                          child: Container(
-                                            child: Text(
-                                              Subsc[index]['name'],
-                                              style: const TextStyle(
-                                                fontSize: 15,
-                                                fontFamily: "Poppins",
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        //desc
-                                        Expanded(
-                                          flex: 2,
-                                          child: Container(
-                                            child: Text(
-                                              Subsc[index]['desc'],
-                                              style: const TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 12,
-                                                fontFamily: "Poppins",
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Container(
-                                            child: Align(
-                                              alignment: Alignment.bottomLeft,
-                                              child: ElevatedButton(
-                                                style: ButtonStyle(
-                                                  backgroundColor:
-                                                      MaterialStateProperty.all(
-                                                          Colors.pink[100]),
-                                                ),
-                                                child: const Text(
-                                                  "Tramway",
-                                                  style: TextStyle(
-                                                      fontFamily: "Poppins",
-                                                      fontSize: 12,
-                                                      color: Colors.pinkAccent),
-                                                ),
-                                                onPressed: () {},
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    child: Column(
-                                      children: [
-                                        //price
-                                        Expanded(
-                                          flex: 1,
-                                          child: Container(
-                                            child: Text(
-                                              Subsc[index]['price'],
-                                              style: const TextStyle(
-                                                fontSize: 18,
-                                                fontFamily: "Poppins",
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        //Day
-                                        Expanded(
-                                          flex: 2,
-                                          child: Container(
-                                            child: Text(
-                                              Subsc[index]['Day'],
-                                              style: const TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.red,
-                                                fontFamily: "Poppins",
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Container(
-                                              child: ElevatedButton(
-                                            child: Row(
-                                              children: const [
-                                                Text(
-                                                  "Purchase",
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 10.0,
-                                                ),
-                                                Icon(
-                                                  Icons.arrow_forward_outlined,
-                                                  color: Colors.white,
-                                                ),
-                                              ],
-                                            ),
-                                            onPressed: () {
-                                              debugPrint("Purchase pressed");
-
-                                              //Navigator.push(
-                                              // context,
-                                              //MaterialPageRoute(
-                                              // builder: (context) => Page3(),
-                                              // ));
-                                            },
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all(
-                                                      Colors.blueAccent),
-                                              shape: MaterialStateProperty.all<
-                                                      RoundedRectangleBorder>(
-                                                  RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(13.0),
-                                              )),
-                                            ),
-                                          )),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ]),
-                            ),
-                          ),
-                        );
-                      }),
-                ),
-                // Stack(
-                //   children: [
-                //     Padding(
-                //       padding: EdgeInsets.all(30.0),
-                //       child: Align(
-                //         alignment: Alignment(0.0, 1.0),
-                //         child: ClipRRect(
-                //           borderRadius: BorderRadius.all(Radius.circular(30)),
-                //           child: BottomNavigationBar(
-                //               selectedItemColor: Colors.white,
-                //               backgroundColor: Colors.blue[900],
-                //               items: const [
-                //                 BottomNavigationBarItem(
-                //                   icon: Icon(
-                //                     Icons.home,
-                //                     color: Colors.white,
-                //                   ),
-                //                   label: "Home",
-                //                 ),
-                //                 BottomNavigationBarItem(
-                //                     icon: Icon(
-                //                       Icons.speaker_notes,
-                //                       color: Colors.white,
-                //                     ),
-                //                     label: "notes"),
-                //                 BottomNavigationBarItem(
-                //                     icon: Icon(
-                //                       Icons.history,
-                //                       color: Colors.white,
-                //                     ),
-                //                     label: "history"),
-                //                 BottomNavigationBarItem(
-                //                     icon: Icon(
-                //                       Icons.person_outline,
-                //                       color: Colors.white,
-                //                     ),
-                //                     label: "Profile"),
-                //               ]),
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-              ],
-            );
-          }),
+                    );
+                  }),
+            ),
+            // Stack(
+            //   children: [
+            //     Padding(
+            //       padding: EdgeInsets.all(30.0),
+            //       child: Align(
+            //         alignment: Alignment(0.0, 1.0),
+            //         child: ClipRRect(
+            //           borderRadius: BorderRadius.all(Radius.circular(30)),
+            //           child: BottomNavigationBar(
+            //               selectedItemColor: Colors.white,
+            //               backgroundColor: Colors.blue[900],
+            //               items: const [
+            //                 BottomNavigationBarItem(
+            //                   icon: Icon(
+            //                     Icons.home,
+            //                     color: Colors.white,
+            //                   ),
+            //                   label: "Home",
+            //                 ),
+            //                 BottomNavigationBarItem(
+            //                     icon: Icon(
+            //                       Icons.speaker_notes,
+            //                       color: Colors.white,
+            //                     ),
+            //                     label: "notes"),
+            //                 BottomNavigationBarItem(
+            //                     icon: Icon(
+            //                       Icons.history,
+            //                       color: Colors.white,
+            //                     ),
+            //                     label: "history"),
+            //                 BottomNavigationBarItem(
+            //                     icon: Icon(
+            //                       Icons.person_outline,
+            //                       color: Colors.white,
+            //                     ),
+            //                     label: "Profile"),
+            //               ]),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+          ],
+        ),
+      ),
     );
   }
 }
