@@ -235,7 +235,7 @@ class _HomeState extends State<Home> {
                     return Padding(
                       padding: const EdgeInsets.only(left: 24.0, bottom: 10.0),
                       child: Container(
-                        width: width * 0.7,
+                        width: width * 0.6,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(15.0),
@@ -348,7 +348,7 @@ class _HomeState extends State<Home> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(color: const Color(0x80341AF6)),
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(8.0),
                           boxShadow: const [
                             BoxShadow(
                               color: Color(0x1a2D9CDB),
@@ -361,7 +361,7 @@ class _HomeState extends State<Home> {
                           padding: const EdgeInsets.all(15.0),
                           child: Row(children: [
                             Expanded(
-                              flex: 3,
+                              flex: 4,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -390,7 +390,7 @@ class _HomeState extends State<Home> {
                                     ),
                                   ),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
@@ -418,89 +418,82 @@ class _HomeState extends State<Home> {
                                           ),
                                         ),
                                       ),
-                                      const SizedBox(
-                                        width: 80,
-                                      ),
-                                      Container(
-                                        width: 95,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xff341AF6),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: Row(
-                                            children: [
-                                              TextButton(
-                                                child: const Text(
-                                                  "Purchase",
-                                                  style: TextStyle(
-                                                    fontFamily: 'Poppins',
-                                                    fontSize: 12.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                                onPressed: () {
-                                                  debugPrint(
-                                                      "Purchase pressed");
-                                                  //Navigator.push(
-                                                  // context,
-                                                  //MaterialPageRoute(
-                                                  // builder: (context) => Page3(),
-                                                  // ));
-                                                },
-                                              ),
-                                              const Icon(
-                                                Icons.arrow_forward_outlined,
-                                                color: Colors.white,
-                                                size: 15.0,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
                                     ],
                                   ),
                                 ],
                               ),
                             ),
                             Expanded(
-                              flex: 1,
-                              child: Container(
-                                child: Column(
-                                  children: [
-                                    //price
-                                    Expanded(
-                                      flex: 1,
-                                      child: Container(
-                                        child: Text(
-                                          Subsc[index]['price'],
-                                          style: const TextStyle(
-                                            fontSize: 18,
-                                            fontFamily: "Poppins",
-                                          ),
-                                        ),
+                              flex: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  //price
+                                  Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      Subsc[index]['price'],
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: "Poppins",
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    //Day
-                                    Expanded(
-                                      flex: 2,
-                                      child: Container(
-                                        child: Text(
-                                          Subsc[index]['Day'],
-                                          style: const TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.red,
-                                            fontFamily: "Poppins",
-                                          ),
-                                        ),
+                                  ),
+                                  //Day
+                                  Expanded(
+                                    flex: 2,
+                                    child: Text(
+                                      Subsc[index]['Day'],
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.red,
+                                        fontFamily: "Poppins",
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(
+                                      width: 95,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xff341AF6),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          TextButton(
+                                            child: const Text(
+                                              "Purchase",
+                                              style: TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              debugPrint("Purchase pressed");
+                                              //Navigator.push(
+                                              // context,
+                                              //MaterialPageRoute(
+                                              // builder: (context) => Page3(),
+                                              // ));
+                                            },
+                                          ),
+                                          const Icon(
+                                            Icons.arrow_forward_outlined,
+                                            color: Colors.white,
+                                            size: 15.0,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ]),
