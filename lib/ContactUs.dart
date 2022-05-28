@@ -18,7 +18,7 @@ class _ContactUsState extends State<ContactUs> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 30.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -41,7 +41,7 @@ class _ContactUsState extends State<ContactUs> {
                     ),
                   ),
                   SizedBox(
-                    width: width * 0.166,
+                    width: width * 0.185,
                   ),
                   const Text(
                     "Contact us",
@@ -53,7 +53,7 @@ class _ContactUsState extends State<ContactUs> {
                     ),
                   ),
                   SizedBox(
-                    width: width * 0.164,
+                    width: width * 0.178,
                   ),
                   Container(
                     width: 57,
@@ -84,7 +84,7 @@ class _ContactUsState extends State<ContactUs> {
               Image.asset(
                 "images/ContactUs.png",
                 width: 196.0,
-                height: 180.0,
+                height: 160.0,
               ),
               const Text(
                 "Contact Customer service ",
