@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:setram/Signup.dart';
 import 'package:setram/Home.dart';
+import 'package:setram/OtpInput.dart';
 
 class MailVerif extends StatefulWidget {
   const MailVerif({Key? key}) : super(key: key);
@@ -10,8 +11,21 @@ class MailVerif extends StatefulWidget {
 }
 
 class _MailVerifState extends State<MailVerif> {
+  // 4 text editing controllers that associate with the 4 input fields
+  final TextEditingController _fieldOne = TextEditingController();
+  final TextEditingController _fieldTwo = TextEditingController();
+  final TextEditingController _fieldThree = TextEditingController();
+  final TextEditingController _fieldFour = TextEditingController();
+
+  // This is the entered code
+  // It will be displayed in a Text widget
+  String? _otp;
+
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -23,35 +37,29 @@ class _MailVerifState extends State<MailVerif> {
             child: Row(
               children: [
                 Container(
-                  width: 28.0,
-                  height: 28.0,
-                  child: FloatingActionButton(
-                    elevation: 0.0,
-                    backgroundColor: Colors.white,
-                    child: const Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      color: Color(0xff302F2F),
-                      size: 13.0,
+                  width: width * 0.1,
+                  height: height * 0.053,
+                  decoration: BoxDecoration(
+                    color: const Color(0x338ECAE6),
+                    borderRadius: BorderRadius.circular(14.0),
+                  ),
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back_ios_outlined,
+                      color: Colors.black,
+                      size: 20.0,
                     ),
-                    onPressed: () {
-                      debugPrint("go back pressed");
-
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Signup(),
-                          ));
-                    },
+                    onPressed: () => Navigator.of(context).pop(),
                   ),
                 ),
-                const SizedBox(
-                  width: 90.0,
+                SizedBox(
+                  width: width * 0.23,
                 ),
                 const Text(
                   "Verification",
                   style: TextStyle(
                     color: Color(0xff302F2F),
-                    fontSize: 15.0,
+                    fontSize: 18.0,
                     fontFamily: "Poppins",
                     fontWeight: FontWeight.w600,
                   ),
@@ -71,180 +79,16 @@ class _MailVerifState extends State<MailVerif> {
           const SizedBox(
             height: 30.0,
           ),
-          Container(
-            width: 234,
-            height: 55,
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                    top: 0,
-                    left: 183,
-                    child: Container(
-                        width: 51,
-                        height: 55,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(6),
-                            topRight: Radius.circular(6),
-                            bottomLeft: Radius.circular(6),
-                            bottomRight: Radius.circular(6),
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromRGBO(
-                                    105, 152, 202, 0.07000000029802322),
-                                offset: Offset(2, 4),
-                                blurRadius: 5)
-                          ],
-                          color: Color.fromRGBO(
-                              105, 152, 202, 0.07000000029802322),
-                        ))),
-                Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Container(
-                        width: 51,
-                        height: 55,
-                        child: Stack(children: <Widget>[
-                          Positioned(
-                              top: 0,
-                              left: 0,
-                              child: Container(
-                                  width: 51,
-                                  height: 55,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(6),
-                                      topRight: Radius.circular(6),
-                                      bottomLeft: Radius.circular(6),
-                                      bottomRight: Radius.circular(6),
-                                    ),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: Color.fromRGBO(105, 152, 202,
-                                              0.07000000029802322),
-                                          offset: Offset(2, 2),
-                                          blurRadius: 5)
-                                    ],
-                                    color: const Color.fromRGBO(
-                                        105, 152, 202, 0.05000000074505806),
-                                    border: Border.all(
-                                      color: const Color.fromRGBO(
-                                          105, 152, 202, 1),
-                                      width: 1.5,
-                                    ),
-                                  ))),
-                          const Positioned(
-                              top: 13,
-                              left: 19,
-                              child: Text(
-                                // here we add input fields
-                                '5',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color.fromRGBO(52, 26, 246, 1),
-                                  fontFamily: 'Poppins',
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              )),
-                        ]))),
-                Positioned(
-                    top: 0,
-                    left: 61,
-                    child: Container(
-                        width: 51,
-                        height: 55,
-                        child: Stack(children: <Widget>[
-                          Positioned(
-                              top: 0,
-                              left: 0,
-                              child: Container(
-                                  width: 51,
-                                  height: 55,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(6),
-                                      topRight: Radius.circular(6),
-                                      bottomLeft: Radius.circular(6),
-                                      bottomRight: Radius.circular(6),
-                                    ),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: Color.fromRGBO(105, 152, 202,
-                                              0.07000000029802322),
-                                          offset: Offset(2, 2),
-                                          blurRadius: 5)
-                                    ],
-                                    color: const Color.fromRGBO(
-                                        105, 152, 202, 0.05000000074505806),
-                                    border: Border.all(
-                                      color: const Color.fromRGBO(
-                                          105, 152, 202, 1),
-                                      width: 1.5,
-                                    ),
-                                  ))),
-                          const Positioned(
-                              top: 13,
-                              left: 19,
-                              child: Text(
-                                '2',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Color.fromRGBO(52, 26, 246, 1),
-                                    fontFamily: 'Poppins',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600),
-                              )),
-                        ]))),
-                Positioned(
-                    top: 0,
-                    left: 122,
-                    child: Container(
-                        width: 51,
-                        height: 55,
-                        child: Stack(children: <Widget>[
-                          Positioned(
-                              top: 0,
-                              left: 0,
-                              child: Container(
-                                  width: 51,
-                                  height: 55,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(6),
-                                      topRight: Radius.circular(6),
-                                      bottomLeft: Radius.circular(6),
-                                      bottomRight: Radius.circular(6),
-                                    ),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: Color.fromRGBO(105, 152, 202,
-                                              0.07000000029802322),
-                                          offset: Offset(2, 2),
-                                          blurRadius: 5)
-                                    ],
-                                    color: const Color.fromRGBO(
-                                        105, 152, 202, 0.05000000074505806),
-                                    border: Border.all(
-                                      color: const Color.fromRGBO(
-                                          105, 152, 202, 1),
-                                      width: 1.5,
-                                    ),
-                                  ))),
-                          const Positioned(
-                              top: 13,
-                              left: 19,
-                              child: Text(
-                                '8',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Color.fromRGBO(52, 26, 246, 1),
-                                    fontFamily: 'Poppins',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600),
-                              )),
-                        ]))),
+          // Implement 4 input fields
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                OtpInput(_fieldOne, true),
+                OtpInput(_fieldTwo, false),
+                OtpInput(_fieldThree, false),
+                OtpInput(_fieldFour, false)
               ],
             ),
           ),
@@ -257,8 +101,9 @@ class _MailVerifState extends State<MailVerif> {
                   "Didin’t recieve code?",
                   style: TextStyle(
                     color: Color(0xB3302F2F),
-                    fontSize: 14.0,
+                    fontSize: 15.0,
                     fontFamily: "Poppins",
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 TextButton(
@@ -275,7 +120,7 @@ class _MailVerifState extends State<MailVerif> {
                       color: Color(0xff302F2F),
                       fontSize: 15.0,
                       fontFamily: "Poppins",
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 )
@@ -299,11 +144,23 @@ class _MailVerifState extends State<MailVerif> {
                   onPressed: () {
                     debugPrint("Verify your Account pressed");
 
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Home(),
-                        ));
+                    setState(() {
+                      _otp = _fieldOne.text +
+                          _fieldTwo.text +
+                          _fieldThree.text +
+                          _fieldFour.text;
+                    });
+
+                    if (_fieldOne.text.isNotEmpty ||
+                        _fieldTwo.text.isNotEmpty ||
+                        _fieldThree.text.isNotEmpty ||
+                        _fieldFour.text.isNotEmpty) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Home(),
+                          ));
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor:
