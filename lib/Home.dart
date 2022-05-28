@@ -70,7 +70,7 @@ class _HomeState extends State<Home> {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  left: 20.0, top: 20.0, bottom: 30.0, right: 20.0),
+                  left: 24.0, top: 32.0, bottom: 20.0, right: 24.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
                     icon: const Icon(Icons.notifications_none_outlined),
                   ),
                   SizedBox(
-                    width: width * 0.11,
+                    width: width * 0.12,
                   ),
                   Column(
                     children: const [
@@ -109,25 +109,26 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                   SizedBox(
-                    width: width * 0.11,
+                    width: width * 0.12,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Login(),
-                          ));
-                    },
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all(const CircleBorder()),
-                    ),
-                    child: ClipOval(
-                      child: Image.asset(
-                        'images/userPic.png',
-                        width: 40,
-                        height: 40,
-                        fit: BoxFit.cover,
+                  Container(
+                    width: 57,
+                    height: 57,
+                    child: IconButton(
+                      onPressed: () {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => const Login(),
+                        //     ));
+                      },
+                      icon: ClipOval(
+                        child: Image.asset(
+                          'images/userPic.png',
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
