@@ -94,14 +94,17 @@ class _ContactUsState extends State<ContactUs> {
                     fontFamily: "Poppins",
                     fontWeight: FontWeight.w500),
               ),
-              const Text(
-                "Send notifications to customer service about the situation in the tramway and any feedbacks",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15.0,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w200,
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.0),
+                child: Text(
+                  "Send notifications to customer service about the situation in the tramway and any feedbacks",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14.0,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w200,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -112,104 +115,115 @@ class _ContactUsState extends State<ContactUs> {
                 width: width * 0.9,
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const TextField(
-                        minLines: 1,
-                        maxLines: 3,
-                        decoration: InputDecoration(
-                          hintText: "There was a thief in the traway and... ",
+                  child: Expanded(
+                    flex: 4,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Expanded(
+                          flex: 2,
+                          child: TextField(
+                            minLines: 1,
+                            maxLines: 4,
+                            decoration: InputDecoration(
+                              // border: InputBorder.none,
+                              hintText:
+                                  "There was a thief in the traway and... ",
+                            ),
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 4,
-                            child: Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Container(
-                                width: 40.0,
-                                height: 40.0,
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.add_photo_alternate_outlined,
-                                    color: Colors.white,
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 4,
+                              child: Align(
+                                alignment: Alignment.bottomLeft,
+                                child: Container(
+                                  width: 40.0,
+                                  height: 40.0,
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      Icons.add_photo_alternate_outlined,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {},
                                   ),
-                                  onPressed: () {},
-                                ),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff302F2F),
-                                  borderRadius: BorderRadius.circular(8.0),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xff302F2F),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            flex: 3,
-                            child: Column(
-                              children: [
-                                const Text(
-                                  "Type:",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15.0,
-                                    fontFamily: "Poppins",
+                            Expanded(
+                              flex: 3,
+                              child: Column(
+                                children: [
+                                  const Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      "Type:",
+                                      style: TextStyle(
+                                        color: Color(0xff1A1A25),
+                                        fontSize: 13.0,
+                                        fontFamily: "Poppins",
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.info,
-                                      color: Colors.deepPurple,
-                                    ),
-                                    TextButton(
-                                      child: const Text(
-                                        "Information",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 15.0,
-                                          fontFamily: "Poppins",
-                                        ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.info,
+                                        color: Color(0xff6D5FFD),
                                       ),
-                                      onPressed: () {},
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.warning,
-                                      color: Colors.red,
-                                    ),
-                                    TextButton(
-                                      child: const Text(
-                                        "Warning",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 15.0,
-                                          fontFamily: "Poppins",
+                                      TextButton(
+                                        child: const Text(
+                                          "Information",
+                                          style: TextStyle(
+                                            color: Color(0xff1A1A25),
+                                            fontSize: 15.0,
+                                            fontFamily: "Poppins",
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
+                                        onPressed: () {},
                                       ),
-                                      onPressed: () {},
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.warning,
+                                        color: Color(0xffEC473D),
+                                      ),
+                                      TextButton(
+                                        child: const Text(
+                                          "Warning",
+                                          style: TextStyle(
+                                            color: Color(0xff1A1A25),
+                                            fontSize: 15.0,
+                                            fontFamily: "Poppins",
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        onPressed: () {},
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   border: Border.all(
-                    color: Colors.lightBlueAccent,
+                    color: const Color(0xff73BFDC),
                   ),
                 ),
               ),
