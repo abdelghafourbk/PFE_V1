@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:setram/Login.dart';
 import 'package:setram/Notifications.dart';
+import 'package:setram/ContactUs.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -64,7 +65,7 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       backgroundColor: const Color(0xffF7F7F7),
-      body: SizedBox(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -116,11 +117,11 @@ class _HomeState extends State<Home> {
                     height: 57,
                     child: IconButton(
                       onPressed: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) => const Login(),
-                        //     ));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ContactUs(),
+                            ));
                       },
                       icon: ClipOval(
                         child: Image.asset(
