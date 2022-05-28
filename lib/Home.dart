@@ -84,8 +84,8 @@ class _HomeState extends State<Home> {
                     },
                     icon: const Icon(Icons.notifications_none_outlined),
                   ),
-                  const SizedBox(
-                    width: 35.0,
+                  SizedBox(
+                    width: width * 0.11,
                   ),
                   Column(
                     children: const [
@@ -108,8 +108,8 @@ class _HomeState extends State<Home> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    width: 35.0,
+                  SizedBox(
+                    width: width * 0.11,
                   ),
                   ElevatedButton(
                     onPressed: () {
