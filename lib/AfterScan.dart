@@ -153,6 +153,174 @@ class _AfterScanState extends State<AfterScan> {
                               Expanded(
                                 flex: 1,
                                 child: Text(
+                                  ticket[0]['name'],
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              //desc
+                              Expanded(
+                                flex: 2,
+                                child: Text(
+                                  ticket[0]['desc'],
+                                  style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 11,
+                                    fontFamily: "Poppins",
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 90,
+                                        height: 35,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xffFCE6E6),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: TextButton(
+                                            child: Text(
+                                              (ticket[0]['tag'] as List)[0],
+                                              style: const TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w500,
+                                                color: Color(0xffEB5757),
+                                              ),
+                                            ),
+                                            onPressed: () {},
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              //price
+                              Expanded(
+                                flex: 1,
+                                child: Text(
+                                  ticket[0]['price'],
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                              //Duration
+                              Expanded(
+                                flex: 2,
+                                child: Text(
+                                  ticket[0]['duration'],
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.red,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  width: 95,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xff341AF6),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      TextButton(
+                                        child: const Text(
+                                          "Purchase",
+                                          style: TextStyle(
+                                            fontFamily: 'Poppins',
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          debugPrint("Purchase pressed");
+                                          //Navigator.push(
+                                          // context,
+                                          //MaterialPageRoute(
+                                          // builder: (context) => Page3(),
+                                          // ));
+                                        },
+                                      ),
+                                      const Icon(
+                                        Icons.arrow_forward_outlined,
+                                        color: Colors.white,
+                                        size: 15.0,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 160.0,
+                width: width,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 24.0, bottom: 10.0),
+                  child: Container(
+                    width: width * 0.85,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: const Color(0x80341AF6)),
+                      borderRadius: BorderRadius.circular(8.0),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x1a2D9CDB),
+                          blurRadius: 7,
+                          offset: Offset(2.0, 2.0),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(children: [
+                        Expanded(
+                          flex: 3,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              //name
+                              Expanded(
+                                flex: 1,
+                                child: Text(
                                   ticket[1]['name'],
                                   style: const TextStyle(
                                     fontSize: 14,
@@ -174,36 +342,40 @@ class _AfterScanState extends State<AfterScan> {
                                 ),
                               ),
                               Expanded(
-                                flex: 1,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: 80,
-                                      height: 32,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xffFCE6E6),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: TextButton(
-                                          child: Text(
-                                            (ticket[1]['tag'] as List)[0],
-                                            style: const TextStyle(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 12.0,
-                                              fontWeight: FontWeight.w500,
-                                              color: Color(0xffEB5757),
+                                flex: 2,
+                                child: Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 90,
+                                        height: 35,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xffFCE6E6),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: TextButton(
+                                            child: Text(
+                                              (ticket[1]['tag'] as List)[0],
+                                              style: const TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w500,
+                                                color: Color(0xffEB5757),
+                                              ),
                                             ),
+                                            onPressed: () {},
                                           ),
-                                          onPressed: () {},
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -231,6 +403,174 @@ class _AfterScanState extends State<AfterScan> {
                                 flex: 2,
                                 child: Text(
                                   ticket[1]['duration'],
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.red,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  width: 95,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xff341AF6),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      TextButton(
+                                        child: const Text(
+                                          "Purchase",
+                                          style: TextStyle(
+                                            fontFamily: 'Poppins',
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          debugPrint("Purchase pressed");
+                                          //Navigator.push(
+                                          // context,
+                                          //MaterialPageRoute(
+                                          // builder: (context) => Page3(),
+                                          // ));
+                                        },
+                                      ),
+                                      const Icon(
+                                        Icons.arrow_forward_outlined,
+                                        color: Colors.white,
+                                        size: 15.0,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 160.0,
+                width: width,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 24.0, bottom: 10.0),
+                  child: Container(
+                    width: width * 0.85,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: const Color(0x80341AF6)),
+                      borderRadius: BorderRadius.circular(8.0),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x1a2D9CDB),
+                          blurRadius: 7,
+                          offset: Offset(2.0, 2.0),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(children: [
+                        Expanded(
+                          flex: 3,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              //name
+                              Expanded(
+                                flex: 1,
+                                child: Text(
+                                  ticket[2]['name'],
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              //desc
+                              Expanded(
+                                flex: 2,
+                                child: Text(
+                                  ticket[2]['desc'],
+                                  style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 11,
+                                    fontFamily: "Poppins",
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 90,
+                                        height: 35,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xffFCE6E6),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: TextButton(
+                                            child: Text(
+                                              (ticket[2]['tag'] as List)[0],
+                                              style: const TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w500,
+                                                color: Color(0xffEB5757),
+                                              ),
+                                            ),
+                                            onPressed: () {},
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              //price
+                              Expanded(
+                                flex: 1,
+                                child: Text(
+                                  ticket[2]['price'],
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                              //Duration
+                              Expanded(
+                                flex: 2,
+                                child: Text(
+                                  ticket[2]['duration'],
                                   style: const TextStyle(
                                     fontSize: 13,
                                     color: Colors.red,
