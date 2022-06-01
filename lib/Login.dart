@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:setram/AfterScan.dart';
 import 'package:setram/Signup.dart';
 import 'package:setram/ForgotPassword.dart';
 import 'package:setram/Home.dart';
@@ -297,6 +298,11 @@ class _LoginState extends State<Login> {
                             onPressed: () {
                               debugPrint("Login with Google pressed");
                               //firebase code should be here later
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const AfterScan(),
+                                  ));
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
