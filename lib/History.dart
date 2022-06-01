@@ -162,9 +162,9 @@ class _HistoryState extends State<History> {
                                       const SizedBox(
                                         width: 20.0,
                                       ),
-                                      const Icon(
-                                        Icons.linear_scale_outlined,
-                                        size: 25.0,
+                                      Image.asset(
+                                        'images/Line between stations.png',
+                                        width: width * 0.1,
                                       ),
                                       const SizedBox(
                                         width: 20.0,
@@ -206,7 +206,7 @@ class _HistoryState extends State<History> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        width: 100.0,
+                                        width: 110.0,
                                       ),
                                       Text(
                                         Payments[index]['Time2'],
