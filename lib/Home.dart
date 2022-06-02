@@ -4,6 +4,7 @@ import 'package:setram/AfterScan.dart';
 import 'package:setram/Login.dart';
 import 'package:setram/Notifications.dart';
 import 'package:setram/ContactUs.dart';
+import 'package:setram/ProfileScreen/Profile.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -121,7 +122,7 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ContactUs(),
+                              builder: (context) => const ProfileScreen(),
                             ));
                       },
                       icon: ClipOval(
