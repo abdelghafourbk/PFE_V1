@@ -110,9 +110,11 @@ class _PersonalInfosState extends State<PersonalInfos> {
                             width: 0.5,
                           ),
                           IconButton(
-                            icon: Icon(visible
-                                ? Icons.keyboard_arrow_down
-                                : Icons.arrow_forward_ios),
+                            icon: Icon(
+                              visible
+                                  ? Icons.keyboard_arrow_down_rounded
+                                  : Icons.arrow_forward_ios_rounded,
+                            ),
                             onPressed: () => {
                               hide(),
                             },
@@ -121,12 +123,20 @@ class _PersonalInfosState extends State<PersonalInfos> {
                       ),
                     ),
                     Visibility(
-                      child: const Padding(
-                        padding: EdgeInsets.only(left: 20.0, right: 40.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: "John",
-                            border: OutlineInputBorder(),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0, right: 40.0),
+                        child: Container(
+                          width: width * 0.8,
+                          height: 43,
+                          child: const TextField(
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 10.0, horizontal: 20.0),
+                              hintText: "Flen",
+                              hintStyle: TextStyle(
+                                  fontSize: 14.0, color: Color(0x66000000)),
+                              border: OutlineInputBorder(),
+                            ),
                           ),
                         ),
                       ),
@@ -173,12 +183,20 @@ class _PersonalInfosState extends State<PersonalInfos> {
                       ),
                     ),
                     Visibility(
-                      child: const Padding(
-                        padding: EdgeInsets.only(left: 20.0, right: 40.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: "Amira ",
-                            border: OutlineInputBorder(),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0, right: 40.0),
+                        child: Container(
+                          width: width * 0.8,
+                          height: 43,
+                          child: const TextField(
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 10.0, horizontal: 20.0),
+                              hintText: "BenFlen",
+                              hintStyle: TextStyle(
+                                  fontSize: 14.0, color: Color(0x66000000)),
+                              border: OutlineInputBorder(),
+                            ),
                           ),
                         ),
                       ),
@@ -230,76 +248,82 @@ class _PersonalInfosState extends State<PersonalInfos> {
                             left: 20.0, right: 40.0, bottom: 20.0),
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: "amiraassam860@gmail.com ",
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 20.0),
+                            hintText: "abdelghafoubk@gmail.com",
+                            hintStyle: TextStyle(
+                                fontSize: 14.0, color: Color(0x66000000)),
                             border: OutlineInputBorder(),
                           ),
                         ),
                       ),
                       visible: visible2,
                     ),
+                    // Visibility(
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.only(top: 30.0),
+                    //     child: Container(
+                    //         width: 155.0,
+                    //         height: 39,
+                    //         child: ElevatedButton(
+                    //           child: const Text(
+                    //             "Save infos",
+                    //           ),
+                    //           onPressed: () {
+                    //             debugPrint("Save infos pressed");
+                    //             Navigator.push(
+                    //                 context,
+                    //                 MaterialPageRoute(
+                    //                   builder: (context) =>
+                    //                       const ProfileScreen(),
+                    //                 ));
+                    //           },
+                    //           style: ButtonStyle(
+                    //             backgroundColor:
+                    //                 MaterialStateProperty.all(Colors.black87),
+                    //             shape: MaterialStateProperty.all<
+                    //                     RoundedRectangleBorder>(
+                    //                 RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(10.0),
+                    //             )),
+                    //           ),
+                    //         )),
+                    //   ),
+                    //   visible: visible,
+                    // ),
+                    // Visibility(
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.only(top: 30.0),
+                    //     child: Container(
+                    //         width: 150.0,
+                    //         height: 40,
+                    //         child: ElevatedButton(
+                    //           child: const Text("Save infos"),
+                    //           onPressed: () {
+                    //             debugPrint("Save infos pressed");
+                    //             Navigator.push(
+                    //                 context,
+                    //                 MaterialPageRoute(
+                    //                   builder: (context) =>
+                    //                       const ProfileScreen(),
+                    //                 ));
+                    //           },
+                    //           style: ButtonStyle(
+                    //             backgroundColor:
+                    //                 MaterialStateProperty.all(Colors.black87),
+                    //             shape: MaterialStateProperty.all<
+                    //                     RoundedRectangleBorder>(
+                    //                 RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(10.0),
+                    //             )),
+                    //           ),
+                    //         )),
+                    //   ),
+                    //   visible: visible2,
+                    // ),
                     Visibility(
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 30.0),
-                        child: Container(
-                            width: 150.0,
-                            height: 40,
-                            child: ElevatedButton(
-                              child: const Text("Save infos"),
-                              onPressed: () {
-                                debugPrint("Save infos pressed");
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ProfileScreen(),
-                                    ));
-                              },
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.black87),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                )),
-                              ),
-                            )),
-                      ),
-                      visible: visible,
-                    ),
-                    Visibility(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 30.0),
-                        child: Container(
-                            width: 150.0,
-                            height: 40,
-                            child: ElevatedButton(
-                              child: const Text("Save infos"),
-                              onPressed: () {
-                                debugPrint("Save infos pressed");
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ProfileScreen(),
-                                    ));
-                              },
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.black87),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                )),
-                              ),
-                            )),
-                      ),
-                      visible: visible2,
-                    ),
-                    Visibility(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 30.0),
+                        padding: const EdgeInsets.only(top: 30.0, bottom: 20.0),
                         child: Container(
                             width: 155.0,
                             height: 40,
@@ -326,12 +350,12 @@ class _PersonalInfosState extends State<PersonalInfos> {
                                 shape: MaterialStateProperty.all<
                                         RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
+                                  borderRadius: BorderRadius.circular(10.0),
                                 )),
                               ),
                             )),
                       ),
-                      visible: visible1,
+                      visible: visible1 || visible2 || visible,
                     ),
                   ],
                 ),
