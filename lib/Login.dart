@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:setram/AfterScan.dart';
+import 'package:setram/History.dart';
 import 'package:setram/Signup.dart';
 import 'package:setram/ForgotPassword.dart';
 import 'package:setram/Home.dart';
@@ -301,7 +302,7 @@ class _LoginState extends State<Login> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const AfterScan(),
+                                    builder: (context) => const History(),
                                   ));
                             },
                             style: ButtonStyle(
