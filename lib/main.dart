@@ -169,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(30.0),
+                  padding: const EdgeInsets.all(30.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: const <Widget>[
