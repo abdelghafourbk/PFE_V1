@@ -13,183 +13,238 @@ class Cards extends StatefulWidget {
 class _CardsState extends State<Cards> {
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    String name = "B.Abdelghafour";
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        title: Text("Profile"),
-        centerTitle: true,
-      ),
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          CustomPaint(
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            CustomPaint(
+              child: Container(
+                width: width,
+                height: height,
+              ),
+              painter: HeaderCurvedContainer(),
             ),
-            painter: HeaderCurvedContainer(),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 20.0, right: 20.0),
-            child: Container(
-              width: 450,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 115,
-                    width: 115,
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage("images/circleavatar.png"),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              child: Container(
+                margin: const EdgeInsets.only(
+                  top: 140.0,
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 70.0,
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10.0, bottom: 20.0),
-                    child: Text(
-                      "Name",
-                      style: TextStyle(
+                    Text(
+                      name,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 20.0,
                         fontFamily: "Poppins",
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
-                  ),
-                  Container(
-                    width: 300,
-                    height: 200,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: 30.0, top: 20.0, right: 30.0, bottom: 20.0),
-                      child: Column(
-                        children: [
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "Master card",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15.0,
-                                fontFamily: "Poppins",
+                    const SizedBox(height: 60.0),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                      width: width * 0.8,
+                      height: height * 0.27,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20.0, horizontal: 30.0),
+                        child: Column(
+                          children: [
+                            const Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                "Master card",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 11.0,
+                                  fontFamily: "Poppins",
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 10.0, bottom: 20.0),
-                            child: Row(
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 15.0, bottom: 20.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: const [
+                                  Text(
+                                    "2 2 1 3",
+                                    style: TextStyle(
+                                      color: Color(0xffD4D4D4),
+                                      fontSize: 15.0,
+                                      fontFamily: "Poppins",
+                                    ),
+                                  ),
+                                  Text(
+                                    "4 5 6 3",
+                                    style: TextStyle(
+                                      color: Color(0xffD4D4D4),
+                                      fontSize: 15.0,
+                                      fontFamily: "Poppins",
+                                    ),
+                                  ),
+                                  Text(
+                                    "6 7 8 9",
+                                    style: TextStyle(
+                                      color: Color(0xffD4D4D4),
+                                      fontSize: 15.0,
+                                      fontFamily: "Poppins",
+                                    ),
+                                  ),
+                                  Text(
+                                    "6 4 5 7",
+                                    style: TextStyle(
+                                      color: Color(0xffD4D4D4),
+                                      fontSize: 15.0,
+                                      fontFamily: "Poppins",
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(bottom: 15.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Image.asset(
+                                    "images/Chip.png",
+                                  ),
+                                  Image.asset(
+                                    "images/NFC.png",
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  "2 2 1 3",
+                                const Text(
+                                  "B. Abdelghafour",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15.0,
                                     fontFamily: "Poppins",
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 10.0,
-                                ),
-                                Text(
-                                  "4 5 6 3",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15.0,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10.0,
-                                ),
-                                Text(
-                                  "6 7 8 9",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15.0,
-                                    fontFamily: "Poppins",
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10.0,
-                                ),
-                                Text(
-                                  "6 4 5 7",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15.0,
-                                    fontFamily: "Poppins",
-                                  ),
+                                const SizedBox(width: 50),
+                                Image.asset(
+                                  "images/Mastercard.png",
                                 ),
                               ],
                             ),
-                          ),
-                          Row(
-                            children: [
-                              Image.asset(
-                                "images/Chip.png",
-                              ),
-                              SizedBox(width: 150),
-                              Image.asset(
-                                "images/NFC.png",
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "B. Abdelghafour",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15.0,
-                                  fontFamily: "Poppins",
-                                ),
-                              ),
-                              SizedBox(width: 50),
-                              Image.asset(
-                                "images/Payment.png",
-                              ),
-                            ],
-                          ),
-                        ],
+                          ],
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0Xff302F2F),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30.0),
+                      child: Container(
+                          width: 155.0,
+                          height: 39,
+                          child: ElevatedButton(
+                            child: const Text(
+                              "Add Card",
+                              style: TextStyle(
+                                  fontFamily: "Poppins",
+                                  fontSize: 13.0,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            onPressed: () {
+                              debugPrint("Add card pressed");
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const addCard(),
+                                  ));
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color(0xff302F2F)),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              )),
+                            ),
+                          )),
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 20.0),
+              padding: const EdgeInsets.all(24.0),
+              child: Row(
+                children: [
+                  Container(
+                    width: width * 0.1,
+                    height: height * 0.053,
                     decoration: BoxDecoration(
-                      color: Colors.black87,
-                      borderRadius: BorderRadius.circular(20),
+                      color: const Color(0x33CCCCCC),
+                      borderRadius: BorderRadius.circular(14.0),
+                    ),
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.arrow_back_ios_outlined,
+                        color: Colors.white,
+                        size: 20.0,
+                      ),
+                      onPressed: () => Navigator.of(context).pop(),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30.0),
-                    child: Container(
-                        width: 150.0,
-                        height: 40,
-                        child: ElevatedButton(
-                          child: const Text("Add card"),
-                          onPressed: () {
-                            debugPrint("CAdd card pressed");
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => addCard(),
-                                ));
-                          },
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.black87),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            )),
-                          ),
-                        )),
+                  SizedBox(
+                    width: width * 0.24,
+                  ),
+                  const Text(
+                    "My Cards",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
+            ),
+            Container(
+              margin:
+                  const EdgeInsets.only(top: 90.0, bottom: 20.0, left: 140.0),
+              height: 105,
+              width: 105,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Colors.white,
+                  width: 3.5,
+                ),
+                image: const DecorationImage(
+                    fit: BoxFit.cover, image: AssetImage("images/userPic.png")),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

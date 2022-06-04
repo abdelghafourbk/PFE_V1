@@ -259,68 +259,6 @@ class _PersonalInfosState extends State<PersonalInfos> {
                       ),
                       visible: visible2,
                     ),
-                    // Visibility(
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(top: 30.0),
-                    //     child: Container(
-                    //         width: 155.0,
-                    //         height: 39,
-                    //         child: ElevatedButton(
-                    //           child: const Text(
-                    //             "Save infos",
-                    //           ),
-                    //           onPressed: () {
-                    //             debugPrint("Save infos pressed");
-                    //             Navigator.push(
-                    //                 context,
-                    //                 MaterialPageRoute(
-                    //                   builder: (context) =>
-                    //                       const ProfileScreen(),
-                    //                 ));
-                    //           },
-                    //           style: ButtonStyle(
-                    //             backgroundColor:
-                    //                 MaterialStateProperty.all(Colors.black87),
-                    //             shape: MaterialStateProperty.all<
-                    //                     RoundedRectangleBorder>(
-                    //                 RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(10.0),
-                    //             )),
-                    //           ),
-                    //         )),
-                    //   ),
-                    //   visible: visible,
-                    // ),
-                    // Visibility(
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(top: 30.0),
-                    //     child: Container(
-                    //         width: 150.0,
-                    //         height: 40,
-                    //         child: ElevatedButton(
-                    //           child: const Text("Save infos"),
-                    //           onPressed: () {
-                    //             debugPrint("Save infos pressed");
-                    //             Navigator.push(
-                    //                 context,
-                    //                 MaterialPageRoute(
-                    //                   builder: (context) =>
-                    //                       const ProfileScreen(),
-                    //                 ));
-                    //           },
-                    //           style: ButtonStyle(
-                    //             backgroundColor:
-                    //                 MaterialStateProperty.all(Colors.black87),
-                    //             shape: MaterialStateProperty.all<
-                    //                     RoundedRectangleBorder>(
-                    //                 RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(10.0),
-                    //             )),
-                    //           ),
-                    //         )),
-                    //   ),
-                    //   visible: visible2,
-                    // ),
                     Visibility(
                       child: Padding(
                         padding: const EdgeInsets.only(top: 30.0, bottom: 20.0),
