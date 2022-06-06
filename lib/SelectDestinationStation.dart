@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:setram/NoQrCodeDetected.dart';
 import 'package:setram/ScanQrCode.dart';
-import 'package:setram/SelectDestinationStation.dart';
+import 'package:setram/SelectDestination.dart';
 
-class selectDestination extends StatefulWidget {
-  const selectDestination({Key? key}) : super(key: key);
+class SelectDestinationStation extends StatefulWidget {
+  const SelectDestinationStation({Key? key}) : super(key: key);
 
   @override
-  State<selectDestination> createState() => _selectDestinationState();
+  State<SelectDestinationStation> createState() =>
+      _SelectDestinationStationState();
 }
 
-class _selectDestinationState extends State<selectDestination> {
+class _SelectDestinationStationState extends State<SelectDestinationStation> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -18,7 +19,46 @@ class _selectDestinationState extends State<selectDestination> {
     String title = "University of Science and Technology Houari Boumediene";
     String description =
         "This should be a small description about the place so i will fill it later on with more informations This should be a small description about the place so i will fill it later on with more informations";
-
+    var StationsList = [
+      "Ruisseau",
+      "Les Fusiilés",
+      "Tripoli-Thaalibia",
+      "Tripoli-Mosquée",
+      "Tripoli-Hamadache",
+      "Tripoli-maqqaria",
+      "Caroubier",
+      "La Glacière",
+      "Pont El Harrach",
+      "BelleVue",
+      "Bekri Bougerra",
+      "Cinq Maisons",
+      "Foire d'Alger",
+      "Les Pins",
+      "Tamaris",
+      "Cité Mokhtar Zerhouni",
+      "Cité Rabia Tahar",
+      "Université de BabEzzouar",
+      "Cité 5 Juillet",
+      "Bab Ezzouar-Le pont",
+      "Cité Universitaire Cube1",
+      "Cité 8 Mai 1945",
+      "Cité Clair Matin",
+      "Bordj El Kiffan Lycée",
+      "Bordj El Kiffan Centre",
+      "Bordj El Kiffan Polyclinique",
+      "Mouhous",
+      "Mimouni Mahmoud",
+      "Ben Merabet",
+      "Ben Redouane",
+      "Ben Mered",
+      "Sidi Dris",
+      "Ben Zerga",
+      "Ben Zerga",
+      "Café Chergui",
+      "Faculté Biomédicale",
+      "Cité Diplomatique",
+      "Dergana centre",
+    ];
     return Scaffold(
       backgroundColor: const Color(0xffF7F7F7),
       body: SingleChildScrollView(
@@ -131,7 +171,7 @@ class _selectDestinationState extends State<selectDestination> {
                 height: 10.0,
               ),
               const Text(
-                "Scan the Departure Station Qrcode",
+                "Choose a departure \nstation from the list",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: "Poppins",
@@ -144,8 +184,8 @@ class _selectDestinationState extends State<selectDestination> {
                 height: 10.0,
               ),
               Container(
-                width: width * 0.55,
-                height: width * 0.55,
+                width: width * 0.8,
+                height: width * 0.5,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
                   color: const Color(0xffffffff),
@@ -188,12 +228,12 @@ class _selectDestinationState extends State<selectDestination> {
                                   ));
                             },
                             icon: const Icon(Icons.qr_code_rounded,
-                                color: Color(0xff302F2F)),
+                                color: Color(0x80302F2F)),
                           ),
                           const Text(
                             "Qr Code",
                             style: TextStyle(
-                              color: Color(0xff302F2F),
+                              color: Color(0x80302F2F),
                               fontFamily: "Poppins",
                               fontSize: 14.0,
                             ),
@@ -215,16 +255,16 @@ class _selectDestinationState extends State<selectDestination> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        const SelectDestinationStation(),
+                                        const selectDestination(),
                                   ));
                             },
                             icon: const Icon(Icons.list_alt_rounded,
-                                color: Color(0x80302F2F)),
+                                color: Color(0xff302F2F)),
                           ),
                           const Text(
                             "Station",
                             style: TextStyle(
-                              color: Color(0x80302F2F),
+                              color: Color(0xff302F2F),
                               fontFamily: "Poppins",
                               fontSize: 14.0,
                             ),
