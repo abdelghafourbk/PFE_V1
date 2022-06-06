@@ -5,6 +5,7 @@ import 'package:setram/Login.dart';
 import 'package:setram/Notifications.dart';
 import 'package:setram/ContactUs.dart';
 import 'package:setram/ProfileScreen/Profile.dart';
+import 'package:setram/SelectDestination.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -236,59 +237,69 @@ class _HomeState extends State<Home> {
                   shrinkWrap: true,
                   itemCount: Dest.length,
                   itemBuilder: (BuildContext context, int pagePosition) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 24.0, bottom: 10.0),
-                      child: Container(
-                        width: width * 0.6,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15.0),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x1a6998CA),
-                              blurRadius: 7,
-                              offset: Offset(2.0, 2.0),
-                            ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(15.0),
-                                child: Image.asset(
-                                  Dest[pagePosition]['image'],
-                                  width: double.infinity,
-                                  height: height * 0.12,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                              const SizedBox(height: 5.0),
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  Dest[pagePosition]['name'],
-                                  style: const TextStyle(
-                                    color: Color(0xff302F2F),
-                                    fontSize: 16.0,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 5.0),
-                              Text(
-                                Dest[pagePosition]['desc'],
-                                style: const TextStyle(
-                                  color: Color(0xff88879C),
-                                  fontSize: 12.0,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w200,
-                                ),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const selectDestination(),
+                            ));
+                      },
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.only(left: 24.0, bottom: 10.0),
+                        child: Container(
+                          width: width * 0.6,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15.0),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0x1a6998CA),
+                                blurRadius: 7,
+                                offset: Offset(2.0, 2.0),
                               ),
                             ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  child: Image.asset(
+                                    Dest[pagePosition]['image'],
+                                    width: double.infinity,
+                                    height: height * 0.12,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                const SizedBox(height: 5.0),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    Dest[pagePosition]['name'],
+                                    style: const TextStyle(
+                                      color: Color(0xff302F2F),
+                                      fontSize: 16.0,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 5.0),
+                                Text(
+                                  Dest[pagePosition]['desc'],
+                                  style: const TextStyle(
+                                    color: Color(0xff88879C),
+                                    fontSize: 12.0,
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w200,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

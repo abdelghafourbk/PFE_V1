@@ -302,7 +302,7 @@ class _LoginState extends State<Login> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const History(),
+                                    builder: (context) => const AfterScan(),
                                   ));
                             },
                             style: ButtonStyle(
