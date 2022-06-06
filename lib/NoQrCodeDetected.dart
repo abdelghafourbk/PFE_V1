@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:setram/NoQrCodeDetected.dart';
 import 'package:setram/ScanQrCode.dart';
 
-class selectDestination extends StatefulWidget {
-  const selectDestination({Key? key}) : super(key: key);
+import 'package:setram/SelectDestination.dart';
+
+class NoQrCode extends StatefulWidget {
+  const NoQrCode({Key? key}) : super(key: key);
 
   @override
-  State<selectDestination> createState() => _selectDestinationState();
+  State<NoQrCode> createState() => _NoQrCodeState();
 }
 
-class _selectDestinationState extends State<selectDestination> {
+class _NoQrCodeState extends State<NoQrCode> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    String title = "University of Science and Technology Houari Boumediene";
+    String title = "Univrsity of Science and Technology Houari Boumediene";
     String description =
         "This should be a small description about the place so i will fill it later on with more informations This should be a small description about the place so i will fill it later on with more informations";
 
@@ -69,12 +70,11 @@ class _selectDestinationState extends State<selectDestination> {
                     height: 57,
                     child: IconButton(
                       onPressed: () {
-                        //temp to check the noQrCodeDetected page
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const NoQrCode(),
-                            ));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => const Login(),
+                        //     ));
                       },
                       icon: ClipOval(
                         child: Image.asset(
@@ -130,7 +130,7 @@ class _selectDestinationState extends State<selectDestination> {
                 height: 10.0,
               ),
               const Text(
-                "Scan the Departure Station Qrcode",
+                "No QrCode detected",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: "Poppins",
@@ -142,97 +142,59 @@ class _selectDestinationState extends State<selectDestination> {
               const SizedBox(
                 height: 10.0,
               ),
-              Container(
-                width: width * 0.55,
-                height: width * 0.55,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  color: const Color(0xffffffff),
-                  border: Border.all(
-                    color: const Color(0xff302F2F),
-                    width: 2,
+              Stack(
+                children: [
+                  Container(
+                    width: width * 0.55,
+                    height: width * 0.55,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: const Color(0xffffffff),
+                      border: Border.all(
+                        color: const Color(0xff302F2F),
+                        width: 2,
+                      ),
+                    ),
                   ),
-                ),
+                  Container(
+                      margin: EdgeInsets.all(10.0),
+                      width: width * 0.5,
+                      height: width * 0.5,
+                      child: Image.asset('images/qrcode.png')),
+                ],
               ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              Container(
-                width: width * 0.55,
-                height: width * 0.2,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7.0),
-                  color: const Color(0xffffffff),
-                  border: Border.all(
-                    color: const Color(0xff302F2F),
-                    width: 2,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Container(
+                    width: width * 0.55,
+                    height: 50,
+                    child: ElevatedButton(
+                      child: const Text(
+                        "Try Again",
+                        style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16.0,
+                        ),
                       ),
-                      child: Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const selectDestination(),
-                                  ));
-                            },
-                            icon: const Icon(Icons.qr_code_rounded,
-                                color: Color(0xff302F2F)),
-                          ),
-                          const Text(
-                            "Qr Code",
-                            style: TextStyle(
-                              color: Color(0xff302F2F),
-                              fontFamily: "Poppins",
-                              fontSize: 14.0,
-                            ),
-                          ),
-                        ],
+                      onPressed: () {
+                        debugPrint("Try Again presseds");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const selectDestination(),
+                            ));
+                      },
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(const Color(0xff302F2F)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        )),
                       ),
-                    ),
-                    const VerticalDivider(
-                      thickness: 1.0,
-                      color: Color(0xff302F2F),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const selectDestination(),
-                                  ));
-                            },
-                            icon: const Icon(Icons.list_alt_rounded,
-                                color: Color(0x80302F2F)),
-                          ),
-                          const Text(
-                            "Station",
-                            style: TextStyle(
-                              color: Color(0x80302F2F),
-                              fontFamily: "Poppins",
-                              fontSize: 14.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                    )),
               ),
             ],
           ),
