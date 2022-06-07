@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:setram/NoQrCodeDetected.dart';
+import 'package:setram/Road.dart';
 import 'package:setram/ScanQrCode.dart';
 import 'package:setram/SelectDestination.dart';
 
@@ -19,46 +20,7 @@ class _SelectDestinationStationState extends State<SelectDestinationStation> {
     String title = "University of Science and Technology Houari Boumediene";
     String description =
         "This should be a small description about the place so i will fill it later on with more informations This should be a small description about the place so i will fill it later on with more informations";
-    var StationsList = [
-      "Ruisseau",
-      "Les Fusiilés",
-      "Tripoli-Thaalibia",
-      "Tripoli-Mosquée",
-      "Tripoli-Hamadache",
-      "Tripoli-maqqaria",
-      "Caroubier",
-      "La Glacière",
-      "Pont El Harrach",
-      "BelleVue",
-      "Bekri Bougerra",
-      "Cinq Maisons",
-      "Foire d'Alger",
-      "Les Pins",
-      "Tamaris",
-      "Cité Mokhtar Zerhouni",
-      "Cité Rabia Tahar",
-      "Université de BabEzzouar",
-      "Cité 5 Juillet",
-      "Bab Ezzouar-Le pont",
-      "Cité Universitaire Cube1",
-      "Cité 8 Mai 1945",
-      "Cité Clair Matin",
-      "Bordj El Kiffan Lycée",
-      "Bordj El Kiffan Centre",
-      "Bordj El Kiffan Polyclinique",
-      "Mouhous",
-      "Mimouni Mahmoud",
-      "Ben Merabet",
-      "Ben Redouane",
-      "Ben Mered",
-      "Sidi Dris",
-      "Ben Zerga",
-      "Ben Zerga",
-      "Café Chergui",
-      "Faculté Biomédicale",
-      "Cité Diplomatique",
-      "Dergana centre",
-    ];
+
     return Scaffold(
       backgroundColor: const Color(0xffF7F7F7),
       body: SingleChildScrollView(
@@ -114,7 +76,7 @@ class _SelectDestinationStationState extends State<SelectDestinationStation> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const NoQrCode(),
+                              builder: (context) => const Road(),
                             ));
                       },
                       icon: ClipOval(
