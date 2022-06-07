@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:setram/ScanQrCode.dart';
 import 'package:setram/SelectDestination.dart';
 import 'dart:math';
 import 'globals.dart' as stations;
@@ -83,7 +84,7 @@ class _RoadState extends State<Road> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const Road(),
+                              builder: (context) => const ScanQrCode(),
                             ));
                       },
                       icon: ClipOval(
