@@ -3,6 +3,7 @@ import 'package:setram/NoQrCodeDetected.dart';
 import 'package:setram/Road.dart';
 import 'package:setram/ScanQrCode.dart';
 import 'package:setram/SelectDestination.dart';
+import 'globals.dart' as stations;
 
 class SelectDestinationStation extends StatefulWidget {
   const SelectDestinationStation({Key? key}) : super(key: key);
@@ -155,6 +156,155 @@ class _SelectDestinationStationState extends State<SelectDestinationStation> {
                     color: const Color(0xff302F2F),
                     width: 2,
                   ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: width * 0.3,
+                            height: width * 0.1,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12.0),
+                              color: const Color(0xff6998CA),
+                            ),
+                            child: Center(
+                              child: Text(
+                                stations.StationsList[0],
+                                style: const TextStyle(
+                                  color: Color(0xffffffff),
+                                  fontFamily: "Poppins",
+                                  fontSize: 13.0,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Container(
+                            width: width * 0.3,
+                            height: width * 0.1,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12.0),
+                              color: const Color(0xff6998CA),
+                            ),
+                            child: Center(
+                              child: Text(
+                                stations.StationsList[1],
+                                style: const TextStyle(
+                                  color: Color(0xffffffff),
+                                  fontFamily: "Poppins",
+                                  fontSize: 13.0,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: width * 0.35,
+                            height: width * 0.1,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12.0),
+                              color: const Color(0xff6998CA),
+                            ),
+                            child: Center(
+                              child: Text(
+                                stations.StationsList[2],
+                                style: const TextStyle(
+                                  color: Color(0xffffffff),
+                                  fontFamily: "Poppins",
+                                  fontSize: 13.0,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: width * 0.35,
+                            height: width * 0.1,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12.0),
+                              color: const Color(0xff6998CA),
+                            ),
+                            child: Center(
+                              child: Text(
+                                stations.StationsList[3],
+                                style: const TextStyle(
+                                  color: Color(0xffffffff),
+                                  fontFamily: "Poppins",
+                                  fontSize: 13.0,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: width * 0.355,
+                            height: width * 0.1,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12.0),
+                              color: const Color(0xff6998CA),
+                            ),
+                            child: Center(
+                              child: Text(
+                                stations.StationsList[4],
+                                style: const TextStyle(
+                                  color: Color(0xffffffff),
+                                  fontFamily: "Poppins",
+                                  fontSize: 13.0,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: width * 0.35,
+                            height: width * 0.1,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12.0),
+                              color: const Color(0xff6998CA),
+                            ),
+                            child: Center(
+                              child: Text(
+                                stations.StationsList[5],
+                                style: const TextStyle(
+                                  color: Color(0xffffffff),
+                                  fontFamily: "Poppins",
+                                  fontSize: 13.0,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(
