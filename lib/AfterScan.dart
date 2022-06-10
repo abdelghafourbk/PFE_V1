@@ -126,7 +126,8 @@ class _AfterScanState extends State<AfterScan> {
                 height: 160.0,
                 width: width,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 24.0, bottom: 10.0),
+                  padding: const EdgeInsets.only(
+                      right: 12.0, left: 12.0, bottom: 10.0),
                   child: Container(
                     width: width * 0.85,
                     decoration: BoxDecoration(
@@ -294,7 +295,8 @@ class _AfterScanState extends State<AfterScan> {
                 height: 160.0,
                 width: width,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 24.0, bottom: 10.0),
+                  padding: const EdgeInsets.only(
+                      right: 12.0, left: 12.0, bottom: 10.0),
                   child: Container(
                     width: width * 0.85,
                     decoration: BoxDecoration(
@@ -462,7 +464,8 @@ class _AfterScanState extends State<AfterScan> {
                 height: 160.0,
                 width: width,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 24.0, bottom: 10.0),
+                  padding: const EdgeInsets.only(
+                      right: 12.0, left: 12.0, bottom: 10.0),
                   child: Container(
                     width: width * 0.85,
                     decoration: BoxDecoration(
