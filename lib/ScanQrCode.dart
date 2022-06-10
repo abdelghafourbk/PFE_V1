@@ -155,19 +155,36 @@ class _ScanQrCodeState extends State<ScanQrCode> {
                   ),
                 ],
               ),
+              Container(
+                margin: const EdgeInsets.symmetric(
+                  vertical: 10.0,
+                ),
+                child: const Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    " Buy Subscription",
+                    style: TextStyle(
+                      color: Color(0xff000000),
+                      fontSize: 18.0,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(
-                height: height * 0.2,
+                height: 160.0,
+                width: width,
                 child: ListView.builder(
-                    scrollDirection: Axis.vertical,
+                    scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: Subsc.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                        padding: const EdgeInsets.only(
-                            right: 24.0, left: 24.0, bottom: 10.0),
+                        padding:
+                            const EdgeInsets.only(right: 24.0, bottom: 10.0),
                         child: Container(
-                          width: width,
+                          width: 350,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             border: Border.all(color: const Color(0x80341AF6)),
@@ -182,7 +199,7 @@ class _ScanQrCodeState extends State<ScanQrCode> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
-                            child: Column(children: [
+                            child: Row(children: [
                               Expanded(
                                 flex: 4,
                                 child: Column(
