@@ -394,6 +394,57 @@ class _HomeAdState extends State<HomeAd> {
                                           ),
                                         ),
                                       ),
+                                      SizedBox(
+                                        width: width * 0.09,
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                          width: 95,
+                                          height: 30,
+                                          child: Row(
+                                            // mainAxisAlignment:
+                                            //      MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              ElevatedButton(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: const [
+                                                    Text(
+                                                      "Delete",
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                    Icon(
+                                                      Icons.delete_outline,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ],
+                                                ),
+                                                onPressed: () {
+                                                  debugPrint("Delete pressed");
+                                                },
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          const Color(
+                                                              0xffF62921)),
+                                                  shape: MaterialStateProperty
+                                                      .all<RoundedRectangleBorder>(
+                                                          RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  )),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ],
@@ -443,7 +494,7 @@ class _HomeAdState extends State<HomeAd> {
                                         children: [
                                           TextButton(
                                             child: const Text(
-                                              "Purchase",
+                                              "Modify",
                                               style: TextStyle(
                                                 fontFamily: 'Poppins',
                                                 fontSize: 12.0,
