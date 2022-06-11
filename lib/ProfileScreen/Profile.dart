@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:setram/ContactUs.dart';
+import 'package:setram/History.dart';
+import 'package:setram/Home.dart';
 import 'package:setram/Login.dart';
 import 'package:setram/ProfileScreen/Cards.dart';
 
 import 'package:setram/ResetPassword.dart';
+import 'package:setram/ScanQrCode.dart';
 import 'EditPersonalInfos.dart';
 import 'components/ProfileMenu.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   static String routeName = "/profile";
 
   @override
@@ -15,7 +26,68 @@ class ProfileScreen extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     String name = "B.Abdelghafour";
+
+    List pages = [
+      const Home(),
+      const ContactUs(),
+      const ScanQrCode(),
+      const History(),
+      const ProfileScreen(),
+    ];
+    int currentIndex;
+    void onTap(int index) {
+      setState(() {
+        currentIndex = index;
+      });
+    }
+
     return Scaffold(
+      bottomNavigationBar: Container(
+        color: const Color(0xff302F2F),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 8.0,
+            horizontal: 15.0,
+          ),
+          child: GNav(
+              selectedIndex: 4,
+              backgroundColor: const Color(0xff302F2F),
+              gap: 8.0,
+              color: Colors.white,
+              activeColor: Colors.white,
+              tabBackgroundColor: Colors.grey.shade800,
+              padding: const EdgeInsets.all(13),
+              onTabChange: (index) {
+                print(index);
+                onTap(index);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => pages[index]));
+              },
+              iconSize: 24,
+              tabs: const [
+                GButton(
+                  icon: Icons.home_rounded,
+                  text: 'Home',
+                ),
+                GButton(
+                  icon: Icons.message_rounded,
+                  text: "Contact Us",
+                ),
+                GButton(
+                  icon: Icons.qr_code_scanner_rounded,
+                  text: 'Scan',
+                ),
+                GButton(
+                  icon: Icons.history_rounded,
+                  text: 'Payments',
+                ),
+                GButton(
+                  icon: Icons.person_rounded,
+                  text: 'Profile',
+                ),
+              ]),
+        ),
+      ),
       body: Stack(
         children: [
           CustomPaint(
