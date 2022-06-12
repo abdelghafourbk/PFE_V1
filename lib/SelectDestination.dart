@@ -207,17 +207,26 @@ class _selectDestinationState extends State<selectDestination> {
               const SizedBox(
                 height: 10.0,
               ),
-              Container(
-                width: width * 0.55,
-                height: width * 0.55,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  color: const Color(0xffffffff),
-                  border: Border.all(
-                    color: const Color(0xff302F2F),
-                    width: 2,
+              Stack(
+                children: [
+                  Container(
+                    width: width * 0.55,
+                    height: width * 0.55,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: const Color(0xffffffff),
+                      border: Border.all(
+                        color: const Color(0xff302F2F),
+                        width: 2,
+                      ),
+                    ),
                   ),
-                ),
+                  Container(
+                      margin: const EdgeInsets.all(10.0),
+                      width: width * 0.5,
+                      height: width * 0.5,
+                      child: Image.asset('images/ScanningQrCode.png')),
+                ],
               ),
               const SizedBox(
                 height: 10.0,

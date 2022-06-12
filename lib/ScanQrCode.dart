@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:setram/AfterScan.dart';
 import 'package:setram/ContactUs.dart';
 import 'package:setram/History.dart';
 import 'package:setram/Home.dart';
@@ -151,7 +152,7 @@ class _ScanQrCodeState extends State<ScanQrCode> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ScanQrCode(),
+                              builder: (context) => const AfterScan(),
                             ));
                       },
                       icon: ClipOval(
@@ -182,17 +183,26 @@ class _ScanQrCodeState extends State<ScanQrCode> {
               const SizedBox(
                 height: 10.0,
               ),
-              Container(
-                width: width * 0.55,
-                height: width * 0.55,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  color: const Color(0xffffffff),
-                  border: Border.all(
-                    color: const Color(0xff302F2F),
-                    width: 2,
+              Stack(
+                children: [
+                  Container(
+                    width: width * 0.55,
+                    height: width * 0.55,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: const Color(0xffffffff),
+                      border: Border.all(
+                        color: const Color(0xff302F2F),
+                        width: 2,
+                      ),
+                    ),
                   ),
-                ),
+                  Container(
+                      margin: EdgeInsets.all(10.0),
+                      width: width * 0.5,
+                      height: width * 0.5,
+                      child: Image.asset('images/ScanningQrCode.png')),
+                ],
               ),
               const SizedBox(
                 height: 20.0,

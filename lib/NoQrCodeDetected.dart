@@ -242,7 +242,7 @@ class _NoQrCodeState extends State<NoQrCode> {
                         ),
                       ),
                       onPressed: () {
-                        debugPrint("Try Again presseds");
+                        debugPrint("Try Again pressed");
                         Navigator.push(
                             context,
                             MaterialPageRoute(
