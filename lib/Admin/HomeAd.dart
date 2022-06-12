@@ -4,6 +4,7 @@ import 'package:setram/Admin/ProfileAd.dart';
 import 'package:setram/Admin/SendNotif.dart';
 import 'package:setram/Admin/Statistics.dart';
 import 'package:setram/Admin/Workers.dart';
+import 'package:setram/Admin/addWorker.dart';
 import 'Notifs.dart';
 import 'Subsciption.dart';
 import 'addSub.dart';
@@ -290,11 +291,11 @@ class _HomeAdState extends State<HomeAd> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const HomeAd(),
+                            builder: (context) => const addSub(),
                           ));
                     },
                     child: const Text(
-                      "See All",
+                      "Add Subscription",
                       style: TextStyle(
                         color: Color(0xff6998CA),
                         fontSize: 14.0,
@@ -554,11 +555,11 @@ class _HomeAdState extends State<HomeAd> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Workers(),
+                            builder: (context) => const addWorker(),
                           ));
                     },
                     child: const Text(
-                      "See All",
+                      "Add Worker",
                       style: TextStyle(
                         color: Color(0xff6998CA),
                         fontSize: 14.0,

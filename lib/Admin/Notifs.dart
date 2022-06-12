@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:setram/Admin/HomeAd.dart';
+import 'package:setram/Admin/Subsciption.dart';
 
 class NotifsAd extends StatefulWidget {
   const NotifsAd({Key? key}) : super(key: key);
@@ -14,14 +15,12 @@ class _NotifsAdState extends State<NotifsAd> {
     var Notif1 = {
       'icon': Icons.info,
       'type': 'Information',
-      'description':
-          'The service was late today andwrite something here to complete notification.',
+      'description': 'The service was late today',
     };
     var Notif4 = {
       'icon': Icons.info,
       'type': 'Information',
-      'description':
-          'The service was late today andwrite something here to complete notification.',
+      'description': 'The service was late today',
     };
     var Notif2 = {
       'icon': Icons.warning,
@@ -92,7 +91,7 @@ class _NotifsAdState extends State<NotifsAd> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const HomeAd(),
+                                builder: (context) => const Subscription(),
                               ));
                         },
                         icon: ClipOval(
