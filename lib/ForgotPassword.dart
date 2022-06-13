@@ -39,7 +39,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     color: Color(0xff023047),
                     fontSize: 25.0,
                     fontFamily: "Poppins",
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
