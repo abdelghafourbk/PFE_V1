@@ -1,8 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:setram/Home.dart';
 import 'package:setram/Login.dart';
 import 'package:setram/MailVerificatio.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:setram/models/user.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -18,6 +23,8 @@ class _SignupState extends State<Signup> {
   String _password = "";
   String _pass = "";
   bool _obscureText = true;
+
+  final _auth = FirebaseAuth.instance;
 
   final _formKey = GlobalKey<FormState>();
   var _passKey = GlobalKey<FormFieldState>();
@@ -363,12 +370,7 @@ class _SignupState extends State<Signup> {
                                     debugPrint("Register pressed");
                                     onPressedSubmit();
                                     if (_formKey.currentState!.validate()) {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const MailVerif(),
-                                          ));
+                                      signUp(_email, _password);
                                     }
                                   },
                                   style: ButtonStyle(
@@ -424,5 +426,41 @@ class _SignupState extends State<Signup> {
             }),
       ),
     );
+  }
+
+  void signUp(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => postDetailsToFirestore())
+          .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
+      });
+    }
+  }
+
+  postDetailsToFirestore() async {
+    // calling our firestore
+    //calling our UserModel
+    //sending  those values
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    User? user = _auth.currentUser;
+    UserModel userModel = UserModel();
+
+    //writing all the values
+    userModel.email = user!.email;
+    userModel.uid = user.uid;
+    userModel.firstName = _firstName;
+    userModel.lastName = _lastName;
+
+    await firebaseFirestore
+        .collection("users")
+        .doc(user.uid)
+        .set(userModel.toMap());
+    Fluttertoast.showToast(msg: "Account created successfuly!");
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const MailVerif()),
+        (route) => false);
   }
 }
