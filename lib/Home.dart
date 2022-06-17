@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -10,6 +12,7 @@ import 'package:setram/ContactUs.dart';
 import 'package:setram/ProfileScreen/Profile.dart';
 import 'package:setram/ScanQrCode.dart';
 import 'package:setram/SelectDestination.dart';
+import 'package:setram/models/user.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -20,10 +23,21 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late PageController _pageController;
+
+  User? user = FirebaseAuth.instance.currentUser;
+  UserModel loggedInUser = UserModel();
   @override
   void initState() {
     super.initState();
     _pageController = PageController(viewportFraction: 0.7);
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      this.loggedInUser = UserModel.fromMap(value.data());
+      setState(() {});
+    });
   }
 
   Widget build(BuildContext context) {
@@ -155,8 +169,8 @@ class _HomeState extends State<Home> {
                     width: width * 0.12,
                   ),
                   Column(
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         "Welcome back,",
                         style: TextStyle(
                           color: Colors.black,
@@ -165,8 +179,8 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Text(
-                        "FirstName",
-                        style: TextStyle(
+                        "${loggedInUser.firstName}",
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 18.0,
                           fontFamily: "Poppins",
