@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:setram/ContactUs.dart';
@@ -8,6 +10,7 @@ import 'package:setram/ProfileScreen/Cards.dart';
 
 import 'package:setram/ResetPassword.dart';
 import 'package:setram/ScanQrCode.dart';
+import '../models/user.dart';
 import 'EditPersonalInfos.dart';
 import 'components/ProfileMenu.dart';
 
@@ -38,6 +41,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
     void onTap(int index) {
       setState(() {
         currentIndex = index;
+      });
+    }
+
+    User? user = FirebaseAuth.instance.currentUser;
+    UserModel loggedInUser = UserModel();
+    @override
+    void initState() {
+      super.initState();
+
+      FirebaseFirestore.instance
+          .collection("users")
+          .doc(user!.uid)
+          .get()
+          .then((value) {
+        loggedInUser = UserModel.fromMap(value.data());
+        setState(() {});
       });
     }
 
@@ -153,13 +172,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ProfileMenu(
                     text: "Logout",
                     icon: "images/Logout.png",
-                    press: () => {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Login(),
-                          )),
-                    },
+                    press: () => {logout(context)},
                   ),
                 ],
               ),
@@ -222,6 +235,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
     );
+  }
+
+  Future<void> logout(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const Login()));
   }
 }
 
