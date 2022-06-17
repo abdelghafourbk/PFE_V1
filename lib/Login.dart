@@ -1,5 +1,7 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:setram/Admin/HomeAd.dart';
 import 'package:setram/AfterScan.dart';
 import 'package:setram/AgentC/HomeC.dart';
@@ -38,6 +40,9 @@ class _LoginState extends State<Login> {
       _obscureText = !_obscureText;
     });
   }
+
+  //firebase
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -227,13 +232,7 @@ class _LoginState extends State<Login> {
                                   onPressed: () {
                                     debugPrint("Login pressed");
                                     onPressedLogin();
-                                    if (_formKey.currentState!.validate()) {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => const Home(),
-                                          ));
-                                    }
+                                    signIn(_email, _password);
                                   },
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
@@ -356,5 +355,20 @@ class _LoginState extends State<Login> {
             }),
       ),
     );
+  }
+
+  void signIn(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) => {
+                Fluttertoast.showToast(msg: "Login Successfull"),
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const Home()))
+              })
+          .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
+      });
+    }
   }
 }
