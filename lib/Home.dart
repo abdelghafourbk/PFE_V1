@@ -179,7 +179,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Text(
-                        user.displayName!,
+                        "${loggedInUser.firstName}",
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 18.0,

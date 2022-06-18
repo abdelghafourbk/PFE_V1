@@ -54,7 +54,7 @@ class _PenaltyState extends State<Penalty> {
                   //   width: width * 0.185,
                   // ),
                   const Text(
-                    "Send Notifications",
+                    "Give Penalty",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 18.0,
