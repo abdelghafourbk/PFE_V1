@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:setram/Login.dart';
 import 'package:setram/ResetPassword.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
@@ -123,10 +124,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           bool toResetPassword =
                               await resetPwd(_emailController.text.trim());
                           if (toResetPassword == true) {
+                            await FirebaseAuth.instance.sendPasswordResetEmail(
+                                email: _emailController.text.trim());
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const ResetPassword(),
+                                  builder: (context) => const Login(),
                                 ));
                           } else {
                             Fluttertoast.showToast(
