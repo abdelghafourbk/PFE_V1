@@ -24,7 +24,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   late PageController _pageController;
 
-  User? user = FirebaseAuth.instance.currentUser;
+  final user = FirebaseAuth.instance.currentUser!;
   UserModel loggedInUser = UserModel();
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
     _pageController = PageController(viewportFraction: 0.7);
     FirebaseFirestore.instance
         .collection("users")
-        .doc(user!.uid)
+        .doc(user.uid)
         .get()
         .then((value) {
       loggedInUser = UserModel.fromMap(value.data());
@@ -153,7 +153,7 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.only(
                   left: 24.0, top: 32.0, bottom: 20.0, right: 24.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
                     onPressed: () {
@@ -165,9 +165,9 @@ class _HomeState extends State<Home> {
                     },
                     icon: const Icon(Icons.notifications_none_outlined),
                   ),
-                  SizedBox(
-                    width: width * 0.12,
-                  ),
+                  // SizedBox(
+                  //   width: width * 0.12,
+                  // ),
                   Column(
                     children: [
                       const Text(
@@ -179,7 +179,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Text(
-                        "${loggedInUser.firstName}",
+                        user.displayName!,
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 18.0,
@@ -189,9 +189,7 @@ class _HomeState extends State<Home> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    width: width * 0.12,
-                  ),
+
                   Container(
                     width: 57,
                     height: 57,

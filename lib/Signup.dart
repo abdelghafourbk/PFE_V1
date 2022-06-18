@@ -7,6 +7,7 @@ import 'package:setram/Home.dart';
 import 'package:setram/Login.dart';
 import 'package:setram/MailVerificatio.dart';
 import 'package:email_validator/email_validator.dart';
+
 import 'package:setram/models/user.dart';
 
 class Signup extends StatefulWidget {

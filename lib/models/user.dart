@@ -4,16 +4,19 @@ class UserModel {
   // String? password;
   String? firstName;
   String? lastName;
+  String? photoURL;
 
-  UserModel({this.uid, this.email, this.firstName, this.lastName});
+  UserModel(
+      {this.uid, this.email, this.firstName, this.lastName, this.photoURL});
 
-  //recieving sdata from server
+  //recieving data from server
   factory UserModel.fromMap(map) {
     return UserModel(
       uid: map['uid'],
       email: map['email'],
       firstName: map['firstName'],
       lastName: map['lastName'],
+      photoURL: map['photoURL'],
     );
   }
 
@@ -24,6 +27,7 @@ class UserModel {
       'email': email,
       'firstName': firstName,
       'lastName': lastName,
+      'photoURL': photoURL,
     };
   }
 }

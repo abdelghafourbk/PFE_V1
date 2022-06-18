@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:setram/ContactUs.dart';
 import 'package:setram/History.dart';
 import 'package:setram/Home.dart';
@@ -29,6 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     String name = "B.Abdelghafour";
+    final GoogleSignIn _googleSignIn = GoogleSignIn();
 
     List pages = [
       const Home(),
@@ -170,10 +172,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                   ),
                   ProfileMenu(
-                    text: "Logout",
-                    icon: "images/Logout.png",
-                    press: () => {logout(context)},
-                  ),
+                      text: "Logout",
+                      icon: "images/Logout.png",
+                      press: () async {
+                        if (user!.displayName != null) {
+                          await _googleSignIn.signOut();
+                          await FirebaseAuth.instance.signOut();
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const Login()));
+                        } else {
+                          await FirebaseAuth.instance.signOut();
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const Login()));
+                        }
+                      }),
                 ],
               ),
               decoration: BoxDecoration(
