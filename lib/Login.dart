@@ -395,8 +395,21 @@ class _LoginState extends State<Login> {
           .signInWithEmailAndPassword(email: email, password: password)
           .then((uid) => {
                 Fluttertoast.showToast(msg: "Login Successfull"),
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const Home()))
+                if (FirebaseAuth.instance.currentUser!.photoURL == "normal")
+                  {
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => const Home()))
+                  }
+                else if (FirebaseAuth.instance.currentUser!.photoURL == "agent")
+                  {
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => const HomeC()))
+                  }
+                else
+                  {
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => const HomeAd()))
+                  }
               })
           .catchError((e) {
         Fluttertoast.showToast(msg: e!.message);

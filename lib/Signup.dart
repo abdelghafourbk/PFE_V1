@@ -453,6 +453,7 @@ class _SignupState extends State<Signup> {
     userModel.uid = user.uid;
     userModel.firstName = _firstName;
     userModel.lastName = _lastName;
+    userModel.type = "normal";
 
     await firebaseFirestore
         .collection("users")
