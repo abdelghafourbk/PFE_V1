@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:setram/AfterContactUs.dart';
@@ -18,6 +19,7 @@ class _ContactUsState extends State<ContactUs> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    final TextEditingController _contentController = TextEditingController();
     List pages = [
       const Home(),
       const ContactUs(),
@@ -31,6 +33,11 @@ class _ContactUsState extends State<ContactUs> {
         currentIndex = index;
       });
     }
+
+    final db = FirebaseFirestore.instance;
+    String? value;
+    final CollectionReference notifications =
+        FirebaseFirestore.instance.collection('notifications');
 
     return Scaffold(
       bottomNavigationBar: Container(
@@ -183,12 +190,16 @@ class _ContactUsState extends State<ContactUs> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Expanded(
+                        Expanded(
                           flex: 2,
                           child: TextField(
                             minLines: 1,
                             maxLines: 4,
-                            decoration: InputDecoration(
+                            controller: _contentController,
+                            onChanged: (String _val) {
+                              value = _val;
+                            },
+                            decoration: const InputDecoration(
                               // border: InputBorder.none,
                               hintText:
                                   "There was a thief in the traway and... ",
@@ -305,8 +316,10 @@ class _ContactUsState extends State<ContactUs> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       debugPrint("Send pressed");
+
+                      await notifications.add({"content": value.toString()});
                       Navigator.push(
                           context,
                           MaterialPageRoute(

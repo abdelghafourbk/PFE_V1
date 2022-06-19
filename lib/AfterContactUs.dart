@@ -43,7 +43,7 @@ class _AfterContactUsState extends State<AfterContactUs> {
             horizontal: 15.0,
           ),
           child: GNav(
-              selectedIndex: 2,
+              selectedIndex: 1,
               backgroundColor: const Color(0xff302F2F),
               gap: 8.0,
               color: Colors.white,
