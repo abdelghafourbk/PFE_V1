@@ -29,8 +29,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    String name = "B.Abdelghafour";
+    // String name = "B.Abdelghafour";
     final GoogleSignIn _googleSignIn = GoogleSignIn();
+    final user = FirebaseAuth.instance.currentUser!;
+    UserModel loggedInUser = UserModel();
+    @override
+    void initState() {
+      super.initState();
+      FirebaseFirestore.instance
+          .collection("users")
+          .doc(user.uid)
+          .get()
+          .then((value) {
+        loggedInUser = UserModel.fromMap(value.data());
+        setState(() {});
+      });
+    }
 
     List pages = [
       const Home(),
@@ -43,22 +57,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     void onTap(int index) {
       setState(() {
         currentIndex = index;
-      });
-    }
-
-    User? user = FirebaseAuth.instance.currentUser;
-    UserModel loggedInUser = UserModel();
-    @override
-    void initState() {
-      super.initState();
-
-      FirebaseFirestore.instance
-          .collection("users")
-          .doc(user!.uid)
-          .get()
-          .then((value) {
-        loggedInUser = UserModel.fromMap(value.data());
-        setState(() {});
       });
     }
 
@@ -128,7 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 70.0,
                   ),
                   Text(
-                    name,
+                    "${loggedInUser.firstName} ${loggedInUser.lastName}",
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Color(0xff000000),
@@ -175,7 +173,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       text: "Logout",
                       icon: "images/Logout.png",
                       press: () async {
-                        if (user!.displayName != null) {
+                        if (user.displayName != null) {
                           await _googleSignIn.signOut();
                           await FirebaseAuth.instance.signOut();
                           Navigator.of(context).pushReplacement(

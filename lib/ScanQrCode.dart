@@ -25,10 +25,10 @@ class _ScanQrCodeState extends State<ScanQrCode> {
       'tag': 'Subs1'
     };
     var Subs2 = {
-      'name': 'Tawasol University',
+      'name': 'Tawasol Junior',
       'desc':
-          'For people who study in universities and Vocational training centers whose age does not exceed 29.',
-      'price': '600DA',
+          'For people whose age does not exceed 25, and allows you to have unlimited mobility',
+      'price': '990DA',
       'Day': '30 days',
       'tag': 'Subs1'
     };

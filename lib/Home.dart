@@ -12,6 +12,7 @@ import 'package:setram/ContactUs.dart';
 import 'package:setram/ProfileScreen/Profile.dart';
 import 'package:setram/ScanQrCode.dart';
 import 'package:setram/SelectDestination.dart';
+import 'package:setram/models/destination.dart';
 import 'package:setram/models/user.dart';
 
 class Home extends StatefulWidget {
@@ -23,7 +24,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late PageController _pageController;
-
+  String searchedDest = "";
   final user = FirebaseAuth.instance.currentUser!;
   UserModel loggedInUser = UserModel();
   @override
@@ -72,10 +73,10 @@ class _HomeState extends State<Home> {
       'tag': 'Subs1'
     };
     var Subs2 = {
-      'name': 'Tawasol University',
+      'name': 'Tawasol Junior',
       'desc':
-          'For people who study in universities and Vocational training centers whose age does not exceed 29.',
-      'price': '600DA',
+          'For people whose age does not exceed 25, and allows you to have unlimited mobility',
+      'price': '990DA',
       'Day': '30 days',
       'tag': 'Subs1'
     };
@@ -258,6 +259,11 @@ class _HomeState extends State<Home> {
                           ),
                           fillColor: Color(0xffffffff),
                         ),
+                        onChanged: (val) {
+                          setState(() {
+                            searchedDest = val;
+                          });
+                        },
                       ),
                     ),
                   ],
@@ -307,78 +313,34 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: height * 0.26,
               width: MediaQuery.of(context).size.width,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: Dest.length,
-                  itemBuilder: (BuildContext context, int pagePosition) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const selectDestination(),
-                            ));
-                      },
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(left: 24.0, bottom: 10.0),
-                        child: Container(
-                          width: width * 0.6,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15.0),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color(0x1a6998CA),
-                                blurRadius: 7,
-                                offset: Offset(2.0, 2.0),
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  child: Image.asset(
-                                    Dest[pagePosition]['image'],
-                                    width: double.infinity,
-                                    height: height * 0.12,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                const SizedBox(height: 5.0),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    Dest[pagePosition]['name'],
-                                    style: const TextStyle(
-                                      color: Color(0xff302F2F),
-                                      fontSize: 16.0,
-                                      fontFamily: "Poppins",
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 5.0),
-                                Text(
-                                  Dest[pagePosition]['desc'],
-                                  style: const TextStyle(
-                                    color: Color(0xff88879C),
-                                    fontSize: 12.0,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w200,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
+              child: StreamBuilder<List<DestinationModel>>(
+                  stream: readDestinations(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final destinations = snapshot.data!;
+                      if (searchedDest.isEmpty) {
+                        return ListView(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          children:
+                              destinations.map((buildDestination)).toList(),
+                        );
+                      }
+                      if (destinations[0]
+                          .toString()
+                          .toLowerCase()
+                          .startsWith(searchedDest.toLowerCase())) {
+                        return ListView(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          children:
+                              destinations.map((buildDestination)).toList(),
+                        );
+                      }
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return Container();
                   }),
             ),
 
@@ -640,4 +602,94 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+  Widget buildDestination(DestinationModel destination) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const selectDestination(),
+            ));
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 24.0, bottom: 10.0),
+        child: Container(
+          width: width * 0.6,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15.0),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x1a6998CA),
+                blurRadius: 7,
+                offset: Offset(2.0, 2.0),
+              ),
+            ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Image.asset(
+                    "${destination.image}",
+                    width: double.infinity,
+                    height: height * 0.12,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                // const SizedBox(height: 1.0),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "${destination.name}",
+                    style: const TextStyle(
+                      color: Color(0xff302F2F),
+                      fontSize: 16.0,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                // const SizedBox(height: 1.0),
+                Text(
+                  "${destination.description}".substring(0, 60),
+                  style: const TextStyle(
+                    color: Color(0xff88879C),
+                    fontSize: 12.0,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w200,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // void searchDestination(String query) {
+  //   final suggestions =
+  //       FirebaseFirestore.instance.collection('destinations').where((destination) {
+  //         final destinationName = destination.name.toLowerCase();
+  //         final input = query.toLowerCase();
+  //         return destinationName.contains(input);
+  //       });
+  //       setState(() {
+  //         destinations = suggestions;
+  //       });
+  // }
+
+  Stream<List<DestinationModel>> readDestinations() =>
+      FirebaseFirestore.instance.collection('destinations').snapshots().map(
+          (snapshot) => snapshot.docs
+              .map((doc) => DestinationModel.fromMap(doc.data()))
+              .toList());
 }
