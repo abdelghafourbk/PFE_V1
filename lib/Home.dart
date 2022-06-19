@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:setram/Admin/HomeAd.dart';
+import 'package:setram/Admin/Subsciption.dart';
 import 'package:setram/AfterScan.dart';
 import 'package:setram/History.dart';
 import 'package:setram/Login.dart';
@@ -13,6 +14,7 @@ import 'package:setram/ProfileScreen/Profile.dart';
 import 'package:setram/ScanQrCode.dart';
 import 'package:setram/SelectDestination.dart';
 import 'package:setram/models/destination.dart';
+import 'package:setram/models/subscription.dart';
 import 'package:setram/models/user.dart';
 
 class Home extends StatefulWidget {
@@ -343,7 +345,6 @@ class _HomeState extends State<Home> {
                     return Container();
                   }),
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -387,217 +388,292 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: 160.0,
               width: width,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: Subsc.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                          right: 24.0, left: 24.0, bottom: 10.0),
-                      child: Container(
-                        width: 350,
+              child: StreamBuilder<List<SubscriptionModel>>(
+                  stream: readSubscriptions(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final subscriptions = snapshot.data!;
+                      if (searchedDest.isEmpty) {
+                        return ListView(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          children:
+                              subscriptions.map((buildSubscription)).toList(),
+                        );
+                      }
+                      if (subscriptions[0]
+                          .toString()
+                          .toLowerCase()
+                          .startsWith(searchedDest.toLowerCase())) {
+                        return ListView(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          children:
+                              subscriptions.map((buildSubscription)).toList(),
+                        );
+                      }
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return Container();
+                  }),
+              // Stack(
+              //   children: [
+              //     Padding(
+              //       padding: EdgeInsets.all(30.0),
+              //       child: Align(
+              //         alignment: Alignment(0.0, 1.0),
+              //         child: ClipRRect(
+              //           borderRadius: BorderRadius.all(Radius.circular(30)),
+              //           child: BottomNavigationBar(
+              //               selectedItemColor: Colors.white,
+              //               backgroundColor: Colors.blue[900],
+              //               items: const [
+              //                 BottomNavigationBarItem(
+              //                   icon: Icon(
+              //                     Icons.home,
+              //                     color: Colors.white,
+              //                   ),
+              //                   label: "Home",
+              //                 ),
+              //                 BottomNavigationBarItem(
+              //                     icon: Icon(
+              //                       Icons.speaker_notes,
+              //                       color: Colors.white,
+              //                     ),
+              //                     label: "notes"),
+              //                 BottomNavigationBarItem(
+              //                     icon: Icon(
+              //                       Icons.history,
+              //                       color: Colors.white,
+              //                     ),
+              //                     label: "history"),
+              //                 BottomNavigationBarItem(
+              //                     icon: Icon(
+              //                       Icons.person_outline,
+              //                       color: Colors.white,
+              //                     ),
+              //                     label: "Profile"),
+              //               ]),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildSubscription(SubscriptionModel subscription) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return Padding(
+      padding: const EdgeInsets.only(right: 24.0, left: 24.0, bottom: 10.0),
+      child: Container(
+        width: 350,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: const Color(0x80341AF6)),
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x1a2D9CDB),
+              blurRadius: 7,
+              offset: Offset(2.0, 2.0),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(children: [
+            Expanded(
+              flex: 4,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //name
+                  Expanded(
+                    flex: 1,
+                    child: Text(
+                      "${subscription.name}",
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  //desc
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      "${subscription.description}",
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 11,
+                        fontFamily: "Poppins",
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 80,
+                        height: 32,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: const Color(0x80341AF6)),
+                          color: const Color(0xffFCE6E6),
                           borderRadius: BorderRadius.circular(8.0),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x1a2D9CDB),
-                              blurRadius: 7,
-                              offset: Offset(2.0, 2.0),
-                            ),
-                          ],
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Row(children: [
-                            Expanded(
-                              flex: 4,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  //name
-                                  Expanded(
-                                    flex: 1,
-                                    child: Text(
-                                      Subsc[index]['name'],
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: "Poppins",
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  //desc
-                                  Expanded(
-                                    flex: 2,
-                                    child: Text(
-                                      Subsc[index]['desc'],
-                                      style: const TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 11,
-                                        fontFamily: "Poppins",
-                                      ),
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: 80,
-                                        height: 32,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xffFCE6E6),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: TextButton(
-                                            child: const Text(
-                                              "Tramway",
-                                              style: TextStyle(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 12.0,
-                                                fontWeight: FontWeight.w500,
-                                                color: Color(0xffEB5757),
-                                              ),
-                                            ),
-                                            onPressed: () {},
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: TextButton(
+                            child: const Text(
+                              "Tramway",
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xffEB5757),
                               ),
                             ),
-                            Expanded(
-                              flex: 2,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  //price
-                                  Expanded(
-                                    flex: 1,
-                                    child: Text(
-                                      Subsc[index]['price'],
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontFamily: "Poppins",
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                  //Day
-                                  Expanded(
-                                    flex: 2,
-                                    child: Text(
-                                      Subsc[index]['Day'],
-                                      style: const TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.red,
-                                        fontFamily: "Poppins",
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Container(
-                                      width: 95,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xff341AF6),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          TextButton(
-                                            child: const Text(
-                                              "Purchase",
-                                              style: TextStyle(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 12.0,
-                                                fontWeight: FontWeight.w500,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            onPressed: () {
-                                              debugPrint("Purchase pressed");
-                                              //Navigator.push(
-                                              // context,
-                                              //MaterialPageRoute(
-                                              // builder: (context) => Page3(),
-                                              // ));
-                                            },
-                                          ),
-                                          const Icon(
-                                            Icons.arrow_forward_outlined,
-                                            color: Colors.white,
-                                            size: 15.0,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ]),
+                            onPressed: () {},
+                          ),
                         ),
                       ),
-                    );
-                  }),
+                      const SizedBox(
+                        width: 15.0,
+                      ),
+                      Container(
+                        width: 80,
+                        height: 32,
+                        decoration: BoxDecoration(
+                          color: const Color(0xff302F2F),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: TextButton(
+                            child: const Text(
+                              "Metro",
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xffffffff),
+                              ),
+                            ),
+                            onPressed: () {},
+                          ),
+                        ),
+                      )
+                      // subscription.tag![1]
+                      //     ? Container(
+                      //         width: 80,
+                      //         height: 32,
+                      //         decoration: BoxDecoration(
+                      //           color: const Color(0xffFCE6E6),
+                      //           borderRadius: BorderRadius.circular(8.0),
+                      //         ),
+                      //         child: Align(
+                      //           alignment: Alignment.center,
+                      //           child: TextButton(
+                      //             child: const Text(
+                      //               "Metro",
+                      //               style: TextStyle(
+                      //                 fontFamily: 'Poppins',
+                      //                 fontSize: 12.0,
+                      //                 fontWeight: FontWeight.w500,
+                      //                 color: Color(0x1a6998CA),
+                      //               ),
+                      //             ),
+                      //             onPressed: () {},
+                      //           ),
+                      //         ),
+                      //       )
+                      //     : Container()
+                    ],
+                  ),
+                ],
+              ),
             ),
-            // Stack(
-            //   children: [
-            //     Padding(
-            //       padding: EdgeInsets.all(30.0),
-            //       child: Align(
-            //         alignment: Alignment(0.0, 1.0),
-            //         child: ClipRRect(
-            //           borderRadius: BorderRadius.all(Radius.circular(30)),
-            //           child: BottomNavigationBar(
-            //               selectedItemColor: Colors.white,
-            //               backgroundColor: Colors.blue[900],
-            //               items: const [
-            //                 BottomNavigationBarItem(
-            //                   icon: Icon(
-            //                     Icons.home,
-            //                     color: Colors.white,
-            //                   ),
-            //                   label: "Home",
-            //                 ),
-            //                 BottomNavigationBarItem(
-            //                     icon: Icon(
-            //                       Icons.speaker_notes,
-            //                       color: Colors.white,
-            //                     ),
-            //                     label: "notes"),
-            //                 BottomNavigationBarItem(
-            //                     icon: Icon(
-            //                       Icons.history,
-            //                       color: Colors.white,
-            //                     ),
-            //                     label: "history"),
-            //                 BottomNavigationBarItem(
-            //                     icon: Icon(
-            //                       Icons.person_outline,
-            //                       color: Colors.white,
-            //                     ),
-            //                     label: "Profile"),
-            //               ]),
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
-          ],
+            Expanded(
+              flex: 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  //price
+                  Expanded(
+                    flex: 1,
+                    child: Text(
+                      "${subscription.price} DA",
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  //Day
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      "${subscription.duration} days",
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: Colors.red,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      width: 95,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: const Color(0xff341AF6),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Row(
+                        children: [
+                          TextButton(
+                            child: const Text(
+                              "Purchase",
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                            ),
+                            onPressed: () {
+                              debugPrint("Purchase pressed");
+                              //Navigator.push(
+                              // context,
+                              //MaterialPageRoute(
+                              // builder: (context) => Page3(),
+                              // ));
+                            },
+                          ),
+                          const Icon(
+                            Icons.arrow_forward_outlined,
+                            color: Colors.white,
+                            size: 15.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ]),
         ),
       ),
     );
@@ -691,5 +767,10 @@ class _HomeState extends State<Home> {
       FirebaseFirestore.instance.collection('destinations').snapshots().map(
           (snapshot) => snapshot.docs
               .map((doc) => DestinationModel.fromMap(doc.data()))
+              .toList());
+  Stream<List<SubscriptionModel>> readSubscriptions() =>
+      FirebaseFirestore.instance.collection('subscriptions').snapshots().map(
+          (snapshot) => snapshot.docs
+              .map((doc) => SubscriptionModel.fromMap(doc.data()))
               .toList());
 }
